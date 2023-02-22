@@ -16,7 +16,7 @@ import ConfirmacionPedido from "./Carrito/ConfirmacionPedido";
 import CrearOrden from "./Carrito/CrearOrden";
 import PedidoConfirmado from "./Carrito/PedidoConfirmado";
 import Contactanos from "./Contactanos";
-import Home from "./Home";
+import HomeScreen from "./HomeScreen/HomeScreen";
 import DatosDeEnvio from "./Perfil/DatosDeEnvio";
 import Favoritos from "./Perfil/Favoritos";
 import PedidosPerfil from "./Perfil/PedidosPerfil";

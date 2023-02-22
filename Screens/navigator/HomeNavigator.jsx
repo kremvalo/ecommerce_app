@@ -6,7 +6,7 @@ import Carrito from "../Menu/Carrito/Carrito";
 import CrearOrden from "../Menu/Carrito/CrearOrden";
 import PedidoConfirmado from "../Menu/Carrito/PedidoConfirmado";
 import Contactanos from "../Menu/Contactanos";
-import Home from "../Menu/Home";
+import HomeScreen from "../Menu/HomeScreen/HomeScreen";
 import DatosDeEnvio from "../Menu/Perfil/DatosDeEnvio";
 import Favoritos from "../Menu/Perfil/Favoritos";
 import PedidosPerfil from "../Menu/Perfil/PedidosPerfil";
@@ -22,14 +22,14 @@ const Stack = createNativeStackNavigator();
 export default function HomeNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeScreen"
       screenOptions={{
         headerShown: false,
       }}
     >
       <Stack.Screen
-        name="Home"
-        component={Home}
+        name="HomeScreen"
+        component={HomeScreen}
         options={{
           gestureEnabled: false,
           cardStyle: {

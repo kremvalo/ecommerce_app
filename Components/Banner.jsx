@@ -8,20 +8,18 @@ import {
 export default function Banner({ source }) {
   return (
     <View style={styles.container}>
-      <Image
-        style={{
-          width: widthPercentageToDP(50),
-          height: heightPercentageToDP(10),
-          resizeMode: "contain",
-        }}
-        source={source}
-      />
+      <Image style={styles.imageBanner} source={source} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: widthPercentageToDP(2),
+    marginRight: 8,
+  },
+  imageBanner: {
+    width: 240,
+    height: 108,
+    resizeMode: "contain",
   },
 });

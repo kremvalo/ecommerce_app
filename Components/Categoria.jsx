@@ -1,56 +1,37 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect } from "react";
-import { colores, FontSize } from "../utils/material";
-import {
-  heightPercentageToDP,
-  widthPercentageToDP,
-} from "react-native-responsive-screen";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
-
-import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { SvgUri } from "react-native-svg";
 import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { widthPercentageToDP } from "react-native-responsive-screen";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+import { colores, FontSize } from "../utils/material";
 import { cambiarSubCategorias } from "../redux/actions";
 
-export default function Categoria({ categoria, title, imagen, width = 22.5 }) {
+export default function Categoria({ categoria, title, image, width = 22.5 }) {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const dispatch = useDispatch();
+  const onPressCategory = () => {
+    dispatch(cambiarSubCategorias({ categoria, title }));
+    navigation.getParent("LeftDrawer").openDrawer();
+  };
+
   return (
-    <View style={[styles.container, { width: widthPercentageToDP(width) }]}>
-      <TouchableOpacity
-        style={{ alignItems: "center" }}
-        onPress={() => {
-          dispatch(cambiarSubCategorias({ categoria, title }));
-
-          navigation.getParent("LeftDrawer").openDrawer();
-        }}
-      >
-        {imagen ? (
-          <Image
-            style={{
-              width: widthPercentageToDP(width),
-              height: widthPercentageToDP(width),
-
-              resizeMode: "contain",
-            }}
-            source={{ uri: imagen }}
-          />
+    <View style={styles.container}>
+      <TouchableOpacity onPress={onPressCategory} style={styles.touchView}>
+        {image ? (
+          <SvgUri width="30" height="30" uri={image} />
         ) : (
           <Image
             style={{
+              resizeMode: "contain",
               width: widthPercentageToDP(width),
               height: widthPercentageToDP(width),
-
-              resizeMode: "contain",
             }}
             source={require("../assets/categoria.png")}
           />
         )}
-
         <Text style={styles.textN}>{title}</Text>
       </TouchableOpacity>
     </View>
@@ -59,15 +40,23 @@ export default function Categoria({ categoria, title, imagen, width = 22.5 }) {
 
 const styles = StyleSheet.create({
   container: {
+    height: 78,
     width: widthPercentageToDP(22.5),
+    backgroundColor: "red",
+    borderRadius: 8,
+    marginRight: 8,
+    marginBottom: 30,
+    backgroundColor: "#F5F5F5",
+    paddingHorizontal: "2%",
+  },
+  touchView: {
     alignItems: "center",
-    justifyContent: "flex-start",
-    marginVertical: heightPercentageToDP(2),
+    paddingTop: 5,
   },
   textN: {
-    textAlign: "center",
-    fontFamily: "Poppins_400Regular",
+    fontFamily: "Poppins_600SemiBold",
     color: colores.neutro,
     fontSize: FontSize.Esmall,
+    textAlign: "center",
   },
 });
