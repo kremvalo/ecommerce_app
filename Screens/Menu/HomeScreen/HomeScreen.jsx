@@ -1,6 +1,6 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
+import { useDispatch, useSelector } from "react-redux";
 import { View, FlatList, ScrollView } from "react-native";
 import { widthPercentageToDP } from "react-native-responsive-screen";
 
@@ -13,10 +13,20 @@ import Banner from "../../../Components/Banner";
 import Categoria from "../../../Components/Categoria";
 import Marca from "../../../Components/Marca";
 import Header from "../../../Components/Header";
-import { TitleSection } from "../../../Components";
+import {
+  CardProduct,
+  CardProductItem,
+  TitleSection,
+} from "../../../Components";
+import startGetAllCategories from "../../../queries/getAllCategories";
 
 export default function HomeScreen({ navigation }) {
-  const { categorias, marcas } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { categorias } = useSelector((state) => state);
+
+  useEffect(() => {
+    startGetAllCategories(dispatch);
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -37,7 +47,6 @@ export default function HomeScreen({ navigation }) {
             return <Banner key={i} source={e} />;
           })}
         </ScrollView>
-
         {/* Categories Section */}
         <TitleSection title="Categorias" />
         <FlatList
@@ -52,18 +61,25 @@ export default function HomeScreen({ navigation }) {
             />
           )}
         />
-
         {/* Special offer Section */}
-        <TitleSection title="Oferta especial" />
-        {marcas.map((e, i) => {
-          return <Marca key={i} marca={e} />;
-        })}
+        <TitleSection title="Oferta especial" hasIcon bottom={10} />
+        <FlatList
+          horizontal
+          data={categorias}
+          showsHorizontalScrollIndicator={false}
+          style={{ maxWidth: widthPercentageToDP(90) }}
+          renderItem={({ item }) => <CardProduct />}
+        />
 
         {/* Popular products Section */}
         <TitleSection title="Productos populares" />
-        {marcas.map((e, i) => {
-          return <Marca key={i} marca={e} />;
-        })}
+        <FlatList
+          horizontal
+          data={categorias}
+          showsHorizontalScrollIndicator={false}
+          style={{ maxWidth: widthPercentageToDP(90) }}
+          renderItem={({ item }) => <CardProductItem />}
+        />
       </ScrollView>
     </View>
   );

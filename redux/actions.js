@@ -1,3 +1,5 @@
+import { handleSubmit } from "../Controllers";
+
 export const CAMBIAR_SUBCATEGORIAS = "CAMBIAR_SUBCATEGORIAS";
 export const SET_JWT = "SET_JWT";
 export const SET_DATA_USER = "SET_DATA_USER";
@@ -11,6 +13,7 @@ export const BORRAR_ITEM_CARRITO = "BORRAR_ITEM_CARRITO";
 export const BORRAR_ITEM_FAVORITO = "BORRAR_ITEM_FAVORITO";
 export const AGREGAR_ITEM_FAVORITO = "AGREGAR_ITEM_FAVORITO";
 export const CLEAN_CARRITO = "CLEAN_CARRITO";
+
 export function cambiarSubCategorias(subCategorias) {
   return {
     type: CAMBIAR_SUBCATEGORIAS,
@@ -89,6 +92,13 @@ export function agregarItemFavorito(data) {
 }
 
 export function cleanCarrito(data) {
+  return {
+    type: CLEAN_CARRITO,
+    payload: data,
+  };
+}
+
+export function getAllCategories(data) {
   return {
     type: CLEAN_CARRITO,
     payload: data,

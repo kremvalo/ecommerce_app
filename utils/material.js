@@ -12,6 +12,7 @@ export const colores = {
   error: "#FF5454",
   aux: "#FBEDED",
   text: "#2B2B2B",
+  main: '#f5f5f5',
   background: "#ffffff",
 };
 

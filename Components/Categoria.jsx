@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 30,
     backgroundColor: "#F5F5F5",
-    paddingHorizontal: "2%",
+    paddingHorizontal: "3%",
   },
   touchView: {
     alignItems: "center",
