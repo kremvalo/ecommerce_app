@@ -8,7 +8,6 @@ import ContrasenaOlvidada from "../ContrasenaOlvidada";
 import IniciarSesion from "../IniciarSesion";
 import InicioMenu from "../InicioMenu";
 import HomeNavigator from "../navigator/HomeNavigator";
-import Registro from "../Registro";
 import Rol from "../Rol";
 import ValidarTelefono from "../ValidarTelefono";
 import Carrito from "./Carrito/Carrito";

@@ -13,6 +13,7 @@ export const BORRAR_ITEM_CARRITO = "BORRAR_ITEM_CARRITO";
 export const BORRAR_ITEM_FAVORITO = "BORRAR_ITEM_FAVORITO";
 export const AGREGAR_ITEM_FAVORITO = "AGREGAR_ITEM_FAVORITO";
 export const CLEAN_CARRITO = "CLEAN_CARRITO";
+export const SET_CATEGORIES = "SET_CATEGORIES";
 
 export function cambiarSubCategorias(subCategorias) {
   return {
@@ -100,7 +101,7 @@ export function cleanCarrito(data) {
 
 export function getAllCategories(data) {
   return {
-    type: CLEAN_CARRITO,
+    type: SET_CATEGORIES,
     payload: data,
   };
 }

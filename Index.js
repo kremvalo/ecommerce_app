@@ -21,10 +21,11 @@ import TodosLosPedidos from "./Screens/Menu/Perfil/TodosLosPedidos";
 import MarcasCompletas from "./Screens/Menu/Producto/MarcasCompletas";
 import ProductoDetalle from "./Screens/Menu/Producto/ProductoDetalle";
 import Productos from "./Screens/Menu/Productos";
-import Registro from "./Screens/Registro";
 import Rol from "./Screens/Rol";
 import Splash from "./Screens/Splash";
 import ValidarTelefono from "./Screens/ValidarTelefono";
+
+import RegisterScreen from "./Screens/RegisterScreen/RegisterScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -46,7 +47,7 @@ export default function Index() {
         />
         <Stack.Screen name="Rol" component={Rol} />
         <Stack.Screen name="InicioMenu" component={InicioMenu} />
-        <Stack.Screen name="Registro" component={Registro} />
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen
           name="ConfirmacionRegistro"
           component={ConfirmacionRegistro}

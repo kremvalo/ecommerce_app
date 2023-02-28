@@ -5,7 +5,6 @@ import ConfirmacionRegistro from "../ConfirmacionRegistro";
 import ContrasenaOlvidada from "../ContrasenaOlvidada";
 import IniciarSesion from "../IniciarSesion";
 import InicioMenu from "../InicioMenu";
-import Registro from "../Registro";
 import Rol from "../Rol";
 import ValidarTelefono from "../ValidarTelefono";
 import LeftDrawerScreen from "./MenuLateralIzquierdo";

@@ -1,20 +1,19 @@
 import React from "react";
 import { SvgUri } from "react-native-svg";
-import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { widthPercentageToDP } from "react-native-responsive-screen";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { colores, FontSize } from "../utils/material";
-import { cambiarSubCategorias } from "../redux/actions";
+// import { cambiarSubCategorias } from "../redux/actions";
 
-export default function Categoria({ categoria, title, image, width = 22.5 }) {
-  const dispatch = useDispatch();
+export default function Categoria({ title, image, width = 22.5 }) {
   const navigation = useNavigation();
 
   const onPressCategory = () => {
-    dispatch(cambiarSubCategorias({ categoria, title }));
-    navigation.getParent("LeftDrawer").openDrawer();
+    navigation.navigate("FilterProductScreen");
+    // dispatch(cambiarSubCategorias({ categoria, title }));
+    // navigation.getParent("LeftDrawer").openDrawer();
   };
 
   return (

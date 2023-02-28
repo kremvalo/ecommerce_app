@@ -1,6 +1,7 @@
 import { handleSubmit } from "../Controllers";
+import { getAllCategories } from "../redux/actions";
 
-const getAllCategories = `
+const getCategories = `
   query NewQuery {
     productCategories(where: {parent: 0}) {
       nodes {
@@ -21,14 +22,14 @@ const startGetAllCategories = async (dispatch) => {
   try {
     const { data: { productCategories } } = await handleSubmit(
       "GET",
-      getAllCategories,
+      getCategories,
       {},
       {}
     );
 
     if (productCategories) {
       const categories = productCategories.nodes;
-      // dispatch(setDataCategorias(categorias));
+      dispatch(getAllCategories(categories));
     }
 
   } catch (error) {

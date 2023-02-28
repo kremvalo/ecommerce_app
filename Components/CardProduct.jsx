@@ -1,8 +1,10 @@
 import React from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 
-const CardProduct = ({ section = "Maquillaje" }) => (
-  <View style={styles.container}>
+const CardProduct = ({ isEnd, section = "Maquillaje" }) => (
+  <View
+    style={[styles.container, { marginRight: isEnd ? 60 : 0, marginLeft: 5 }]}
+  >
     <View style={styles.topSection}>
       <View style={styles.category}>
         <View style={styles.icon}></View>
@@ -30,19 +32,16 @@ const styles = StyleSheet.create({
     width: 284,
     backgroundColor: "#fff",
     padding: 16,
-    marginLeft: 5,
     marginBottom: 20,
     borderRadius: 8,
     marginTop: 6,
     shadowColor: "#000",
-    marginRight: 20,
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
   },
   topSection: {

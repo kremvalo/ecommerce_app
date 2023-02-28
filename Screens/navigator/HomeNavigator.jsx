@@ -16,6 +16,7 @@ import CategoriasCompletas from "../Menu/Producto/CategoriasCompletas";
 import MarcasCompletas from "../Menu/Producto/MarcasCompletas";
 import ProductoDetalle from "../Menu/Producto/ProductoDetalle";
 import Productos from "../Menu/Productos";
+import FilterProductScreen from "../Menu/FilterProductScreen/FilterProductScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -39,11 +40,21 @@ export default function HomeNavigator() {
         }}
       />
 
-      <Stack.Screen name="Productos" component={Productos} />
-      <Stack.Screen name="ProductoDetalle" component={ProductoDetalle} />
       <Stack.Screen name="Perfil" component={Perfil} />
       <Stack.Screen name="Carrito" component={Carrito} />
+      <Stack.Screen name="Productos" component={Productos} />
+      <Stack.Screen name="Favoritos" component={Favoritos} />
+      <Stack.Screen name="CrearOrden" component={CrearOrden} />
+      <Stack.Screen name="Contactanos" component={Contactanos} />
       <Stack.Screen name="DatosDeEnvio" component={DatosDeEnvio} />
+      <Stack.Screen name="PedidosPerfil" component={PedidosPerfil} />
+      <Stack.Screen name="ProductoDetalle" component={ProductoDetalle} />
+      <Stack.Screen name="TodosLosPedidos" component={TodosLosPedidos} />
+      <Stack.Screen name="MarcasCompletas" component={MarcasCompletas} />
+      <Stack.Screen
+        name="FilterProductScreen"
+        component={FilterProductScreen}
+      />
       <Stack.Screen
         name="PedidoConfirmado"
         component={PedidoConfirmado}
@@ -51,17 +62,10 @@ export default function HomeNavigator() {
           gestureEnabled: false,
         }}
       />
-      <Stack.Screen name="PedidosPerfil" component={PedidosPerfil} />
-      <Stack.Screen name="Contactanos" component={Contactanos} />
-      <Stack.Screen name="TodosLosPedidos" component={TodosLosPedidos} />
-      <Stack.Screen name="Favoritos" component={Favoritos} />
-      <Stack.Screen name="MarcasCompletas" component={MarcasCompletas} />
       <Stack.Screen
         name="CategoriasCompletas"
         component={CategoriasCompletas}
       />
-
-      <Stack.Screen name="CrearOrden" component={CrearOrden} />
     </Stack.Navigator>
   );
 }
