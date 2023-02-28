@@ -1,5 +1,12 @@
 import React, { forwardRef } from "react";
-import { Text, View, TextInput, StyleSheet } from "react-native";
+import { Octicons } from "@expo/vector-icons";
+import {
+  Text,
+  View,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 
 import { colores as colors } from "../utils/material";
 
@@ -12,6 +19,7 @@ const TextField = forwardRef(
       label,
       value,
       touched,
+      onPress,
       isPassword,
       placeholder,
       keyboardType,
@@ -31,7 +39,12 @@ const TextField = forwardRef(
     return (
       <View style={{ marginBottom: mb }}>
         <Text style={styles.label}>{label}</Text>
-        <View>
+        <View
+          style={{
+            alignItems: isPassword && "center",
+            flexDirection: isPassword && "row",
+          }}
+        >
           <TextInput
             ref={ref}
             name={name}
@@ -45,9 +58,31 @@ const TextField = forwardRef(
             secureTextEntry={secureTextEntry}
             onSubmitEditing={onSubmitEditing}
             placeholderTextColor={colors.textColor}
-            style={[styles.input, { borderColor: validationColor }]}
+            style={[
+              styles.input,
+              {
+                width: !isPassword ? "100%" : "88%",
+                borderColor: validationColor,
+              },
+            ]}
           />
-          {isPassword && <Text>Icon</Text>}
+          {isPassword && (
+            <TouchableOpacity
+              onPress={onPress}
+              style={[
+                styles.pressIcon,
+                {
+                  width: !isPassword ? "0%" : "10%",
+                },
+              ]}
+            >
+              {!secureTextEntry ? (
+                <Octicons name="eye" size={24} color="##231F20" />
+              ) : (
+                <Octicons name="eye-closed" size={24} color="##231F20" />
+              )}
+            </TouchableOpacity>
+          )}
         </View>
         {touched && error && <Text style={styles.textError}>{error}</Text>}
       </View>
@@ -68,6 +103,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 13,
     paddingHorizontal: 15,
+  },
+  pressIcon: {
+    marginLeft: 3,
+    alignItems: "center",
+    justifyContent: "center",
   },
   textError: {
     color: colors.error,

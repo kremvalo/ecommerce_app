@@ -11,6 +11,7 @@ const SelectField = ({
   label = "Seleccione",
   touched,
   placeholder = "Seleccione",
+  onValueChange,
 }) => {
   const validationColor = !touched
     ? colors.ligthGray
@@ -24,9 +25,10 @@ const SelectField = ({
         <RNPickerSelect
           items={items}
           placeholder={{ label: `${placeholder}` }}
-          onValueChange={(value) => console.log(value)}
+          onValueChange={onValueChange}
         />
       </View>
+      {touched && error && <Text style={styles.textError}>{error}</Text>}
     </View>
   );
 };

@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colores.background,
-    paddingHorizontal: widthPercentageToDP(7),
+    paddingHorizontal: widthPercentageToDP(8),
   },
   box: {
     alignItems: 'center'
@@ -24,19 +24,35 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   textR: {
-    marginTop: heightPercentageToDP(1),
-    fontFamily: "Poppins_400Regular",
-    fontSize: FontSize.medium,
     color: colores.primary,
+    fontSize: FontSize.small,
+    fontFamily: "Poppins_400Regular",
   },
   image: {
-    bottom: heightPercentageToDP(2),
     right: widthPercentageToDP(0),
+    bottom: heightPercentageToDP(2),
     position: "absolute",
   },
   image2: {
-    bottom: heightPercentageToDP(0),
     left: widthPercentageToDP(0),
+    bottom: heightPercentageToDP(0),
     position: "absolute",
   },
+  separator: {
+    width: '100%',
+    height: 1,
+    marginTop: 5,
+    marginBottom: 20,
+    backgroundColor: colores.ligthGray,
+  },
+  viewLogin: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: heightPercentageToDP(6),
+  },
+  textLogin: {
+    fontSize: FontSize.small,
+    fontFamily: "Poppins_400Regular",
+    marginRight: 8,
+  }
 });
