@@ -25,7 +25,7 @@ export default function InicioMenu({ navigation, route }) {
             label="Registrate"
             rounded="large"
             onPress={() => {
-              navigation.navigate("Registro", { filter });
+              navigation.navigate("RegisterScreen", { filter });
             }}
           />
           <ButtonComponent

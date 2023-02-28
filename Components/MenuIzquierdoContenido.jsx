@@ -32,7 +32,7 @@ export default function MenuIzquierdoContenido({ routes }) {
       <TouchableOpacity
         style={{ flexDirection: "row", alignItems: "center" }}
         onPress={() => {
-          navigation.navigate("Home");
+          navigation.navigate("HomeScreen");
         }}
       >
         <AntDesign

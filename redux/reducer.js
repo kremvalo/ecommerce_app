@@ -12,6 +12,7 @@ import {
   AGREGAR_ITEM_FAVORITO,
   BORRAR_ITEM_FAVORITO,
   CLEAN_CARRITO,
+  SET_CATEGORIES,
 } from "./actions";
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   subCategorias: [],
   tituloSubCategoria: "",
   categorias: [],
+  categories: [],
   carrito: [],
   marcas: [],
   tipos_de_piel: [],
@@ -48,6 +50,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         jwt: action.payload,
+      };
+    }
+
+    case SET_CATEGORIES: {
+      return {
+        ...state,
+        categories: action.payload,
       };
     }
 
