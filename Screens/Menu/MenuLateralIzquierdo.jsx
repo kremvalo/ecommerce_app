@@ -5,7 +5,6 @@ import MenuIzquierdoContenido from "../../Components/MenuIzquierdoContenido";
 import CargaInicioSesion from "../CargaInicioSesion";
 import ConfirmacionRegistro from "../ConfirmacionRegistro";
 import ContrasenaOlvidada from "../ContrasenaOlvidada";
-import IniciarSesion from "../IniciarSesion";
 import InicioMenu from "../InicioMenu";
 import HomeNavigator from "../navigator/HomeNavigator";
 import Rol from "../Rol";

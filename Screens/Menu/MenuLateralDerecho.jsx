@@ -3,7 +3,6 @@ import MenuDerechoContenido from "../../Components/MenuDerechoContenido";
 import CargaInicioSesion from "../CargaInicioSesion";
 import ConfirmacionRegistro from "../ConfirmacionRegistro";
 import ContrasenaOlvidada from "../ContrasenaOlvidada";
-import IniciarSesion from "../IniciarSesion";
 import InicioMenu from "../InicioMenu";
 import Rol from "../Rol";
 import ValidarTelefono from "../ValidarTelefono";

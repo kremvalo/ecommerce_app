@@ -4,13 +4,22 @@ import { View, TouchableOpacity, Image, StyleSheet, Text } from "react-native";
 
 import { colores as colors } from "../../../utils/material";
 
+const client = "../../../assets/client.png";
+const company = "../../../assets/company.png";
 const logoVherona = "../../../assets/LogoRojo.png";
+const logoVheronaPurple = "../../../assets/modalnegocio.png";
 
-const CardRegister = ({ onPress }) => (
+const CardRegister = ({ isCompany, onPress }) => (
   <View style={styles.card}>
-    <View style={styles.image} />
+    <Image
+      style={styles.image}
+      source={isCompany ? require(client) : require(company)}
+    />
     <View style={styles.mainSection}>
-      <Image style={styles.logo} source={require(logoVherona)} />
+      <Image
+        style={[styles.logo, {}]}
+        source={isCompany ? require(logoVherona) : require(logoVheronaPurple)}
+      />
       <Text style={styles.fisrtText}>
         Somos tu aliado y el de tu negocio e productos de belleza y salud
       </Text>
@@ -19,8 +28,23 @@ const CardRegister = ({ onPress }) => (
         potencian tu negocio
       </Text>
       <View style={styles.separator} />
-      <TouchableOpacity style={styles.backButton} onPress={onPress}>
-        <Text>Registrate</Text>
+      <TouchableOpacity
+        style={[
+          styles.backButton,
+          {
+            backgroundColor: isCompany ? "#CFECF2" : "#D1CAE2",
+          },
+        ]}
+        onPress={onPress}
+      >
+        <Text
+          style={[
+            styles.textButton,
+            { color: isCompany ? "#5ABED2" : "#624F92" },
+          ]}
+        >
+          Registrate
+        </Text>
       </TouchableOpacity>
     </View>
   </View>
@@ -43,19 +67,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
   },
   image: {
-    width: "20%",
+    width: "23%",
     borderRadius: 10,
-    backgroundColor: "#000",
   },
   mainSection: {
-    width: "80%",
+    width: "77%",
     paddingLeft: "5%",
   },
   logo: {
-    width: wp(25),
-    height: wp(20),
+    width: wp(18),
+    height: wp(13),
+    resizeMode: "contain",
   },
-
   fisrtText: {
     marginBottom: 20,
   },
@@ -73,8 +96,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    backgroundColor: "#FBEDED",
     borderTopEndRadius: 15,
+  },
+  textButton: {
+    fontSize: 14,
+    fontWeight: "bold",
   },
 });
 

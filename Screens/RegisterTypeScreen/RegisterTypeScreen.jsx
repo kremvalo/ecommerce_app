@@ -1,19 +1,27 @@
 import React from "react";
-import { SafeAreaView, ScrollView } from "react-native";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import {
+  View,
+  Text,
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 
+import { styles } from "./styles";
 import HeaderLogo from "./components/HeaderLogo";
 import CardRegister from "./components/CardRegister";
 
 function RegisterTypeScreen({ navigation }) {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={styles.main}>
       <ScrollView
         style={{ paddingHorizontal: wp(7) }}
         showsVerticalScrollIndicator={false}
       >
         <HeaderLogo onPress={() => navigation.goBack()} />
         <CardRegister
+          isCompany
           onPress={() =>
             navigation.navigate("RegisterScreen", { filter: "cliente" })
           }
@@ -23,6 +31,13 @@ function RegisterTypeScreen({ navigation }) {
             navigation.navigate("RegisterScreen", { filter: "negocio" })
           }
         />
+        <View style={styles.separator} />
+        <View style={styles.viewLogin}>
+          <Text style={styles.textLogin}>¿Ya tienes cuenta?</Text>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Text style={styles.textR}>Iniciar sesión</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
