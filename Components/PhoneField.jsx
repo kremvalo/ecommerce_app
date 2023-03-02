@@ -12,7 +12,7 @@ const PhoneField = forwardRef(
       mb = 10,
       name,
       error,
-      label = "Teléfono",
+      label = "Télefono",
       value,
       touched,
       countryCode = "+57",

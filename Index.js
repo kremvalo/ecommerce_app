@@ -26,6 +26,7 @@ import Splash from "./Screens/Splash";
 import ValidarTelefono from "./Screens/ValidarTelefono";
 
 import RegisterScreen from "./Screens/RegisterScreen/RegisterScreen";
+import RegisterTypeScreen from './Screens/RegisterTypeScreen/RegisterTypeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +49,7 @@ export default function Index() {
         <Stack.Screen name="Rol" component={Rol} />
         <Stack.Screen name="InicioMenu" component={InicioMenu} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+        <Stack.Screen name="RegisterTypeScreen" component={RegisterTypeScreen} />
         <Stack.Screen
           name="ConfirmacionRegistro"
           component={ConfirmacionRegistro}

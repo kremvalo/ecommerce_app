@@ -1,21 +1,22 @@
-import { useFormik } from "formik";
 import React, { useState } from "react";
+import { useFormik } from "formik";
 import { Text, TouchableOpacity, View, Image } from "react-native";
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { styles } from "./styles";
-import { documentType, filterConst, initialValues, LoginSchema } from ".";
+import Button from "./components/Button";
+import { documentTypes, filterConst, initialValues, LoginSchema } from ".";
 
-import { PhoneField, SelectField, TextField } from "../../Components";
 import { handleSubmit } from "../../Controllers";
-import ButtonComponent from "../../Components/ButtonComponent";
+import { PhoneField, SelectField, TextField } from "../../Components";
 
 const logoVherona = "../../assets/LogoRojo.png";
 
 export default function RegisterScreen({ navigation, route }) {
   const { filter } = route.params;
 
+  const [documentType, setDocumentType] = useState("");
+  const [showPassword, handleShowPassword] = useState(true);
   const [disableButton, handleDisableButton] = useState(false);
 
   const {
@@ -23,6 +24,7 @@ export default function RegisterScreen({ navigation, route }) {
     errors,
     touched,
     handleChange,
+    setFieldValue,
     handleSubmit: onSubmitForm,
   } = useFormik({
     initialValues: initialValues,
@@ -66,8 +68,8 @@ export default function RegisterScreen({ navigation, route }) {
   `;
 
   // sumbit
-  const submitForm = async () => {
-    const { nombres, correo, password, nit, telefono } = values;
+  const submitForm = async (formValues) => {
+    const { nombres, correo, password, nit, telefono } = formValues;
     handleDisableButton(true);
     try {
       const response = await handleSubmit(
@@ -81,9 +83,10 @@ export default function RegisterScreen({ navigation, route }) {
       if (response) {
         navigation.replace("ConfirmacionRegistro");
       }
-      handleDisableButton(false);
     } catch (error) {
       throw new Error("No se pudo crear el usuario");
+    } finally {
+      handleDisableButton(false);
     }
   };
 
@@ -104,7 +107,6 @@ export default function RegisterScreen({ navigation, route }) {
           value={values.nombres}
           error={errors.nombres}
           touched={touched.nombres}
-          // onSubmitEditing={() => apellido.current?.focus()}
           onChangeText={handleChange("nombres")}
         />
         <TextField
@@ -114,10 +116,27 @@ export default function RegisterScreen({ navigation, route }) {
           value={values.apellido}
           error={errors.apellido}
           touched={touched.apellido}
-          // onSubmitEditing={() => lastName.current?.focus()}
           onChangeText={handleChange("apellido")}
         />
-        <SelectField items={documentType} />
+        <SelectField
+          items={documentTypes}
+          label="Tipo de documento"
+          error={errors.documentType}
+          touched={touched.documentType}
+          onValueChange={(event) => {
+            setDocumentType(event);
+            setFieldValue("documentType", event);
+          }}
+        />
+        <TextField
+          name="documento"
+          label="Número de documento"
+          placeholder="Número de documento"
+          value={values.documento}
+          error={errors.documento}
+          touched={touched.documento}
+          onChangeText={handleChange("documento")}
+        />
         {filter === filterConst.BUSINESS && (
           <TextField
             name="nit"
@@ -126,52 +145,47 @@ export default function RegisterScreen({ navigation, route }) {
             value={values.nit}
             error={errors.nit}
             touched={touched.nit}
-            // onSubmitEditing={() => lastName.current?.focus()}
             onChangeText={handleChange("nit")}
           />
         )}
-        <TextField
-          name="correo"
-          label="Correo"
-          placeholder="Correo"
-          value={values.correo}
-          error={errors.correo}
-          touched={touched.correo}
-          // onSubmitEditing={() => lastName.current?.focus()}
-          onChangeText={handleChange("correo")}
-        />
         <PhoneField
           name="phone"
           value={values.phone}
           error={errors.phone}
           touched={touched.phone}
-          placeholder="322 290 9237"
-          // onSubmitEditing={() => lastName.current?.focus()}
+          placeholder="(300)123-4567"
           onChangeText={handleChange("phone")}
         />
+        <View style={styles.separator} />
         <TextField
+          name="correo"
+          label="Email"
+          placeholder="Email"
+          value={values.correo}
+          error={errors.correo}
+          touched={touched.correo}
+          onChangeText={handleChange("correo")}
+        />
+        <TextField
+          isPassword
           name="password"
           label="Contraseña"
-          secureTextEntry={true}
           value={values.password}
           error={errors.password}
-          placeholder="Contraseña"
           touched={touched.password}
-          // onSubmitEditing={() => name.current?.focus()}
+          secureTextEntry={showPassword}
+          placeholder="Escribe tu contraseña"
           onChangeText={handleChange("password")}
+          onPress={() => handleShowPassword(!showPassword)}
         />
-        <ButtonComponent
-          type="rojo"
-          size="medium"
-          rounded="large"
-          label="Continuar"
-          onPress={onSubmitForm}
-          buttonDisabled={disableButton}
-          style={{ marginTop: hp(2) }}
-        />
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.textR}>Atras</Text>
-        </TouchableOpacity>
+        <Button disabled={disableButton} onPress={onSubmitForm} />
+        <View style={styles.separator} />
+        <View style={styles.viewLogin}>
+          <Text style={styles.textLogin}>¿Ya tienes cuenta?</Text>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Text style={styles.textR}>Iniciar sesión</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </KeyboardAwareScrollView>
   );
