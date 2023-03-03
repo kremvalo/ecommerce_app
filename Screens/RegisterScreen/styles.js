@@ -24,7 +24,6 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   textR: {
-    color: colores.primary,
     fontSize: FontSize.small,
     fontFamily: "Poppins_400Regular",
   },

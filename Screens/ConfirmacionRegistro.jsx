@@ -34,7 +34,7 @@ export default function ConfirmacionRegistro({ navigation }) {
             label="Inicia sesión"
             rounded="large"
             onPress={() => {
-              navigation.replace("IniciarSesion");
+              navigation.replace("LoginScreen");
             }}
           />
         </View>

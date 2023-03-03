@@ -51,13 +51,20 @@ function FilterProductScreen() {
           }}
         />
         <View style={styles.titleSection}>
-          <TitleSection title="Productos populares" />
+          <TitleSection
+            title="Productos populares"
+            onPress={() => navigation.navigate("ProductoDetalle")}
+          />
         </View>
         <FlatList
           horizontal
           data={categorias}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => <CardProductItem />}
+          renderItem={({ item }) => (
+            <CardProductItem
+              onPress={() => navigation.navigate("ProductoDetalle")}
+            />
+          )}
         />
       </ScrollView>
     </>

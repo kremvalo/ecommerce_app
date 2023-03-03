@@ -3,7 +3,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
-const logoVherona = "../../../assets/LogoRojo.png";
+const logoVherona = "../../../assets/logo_solo_rosa.png";
 
 const HeaderLogo = ({ onPress }) => (
   <View style={styles.header}>
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingHorizontal: wp(6),
   },
   backButton: {
     width: wp(10),
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
   logo: {
     width: wp(30),
     height: wp(30),
+    resizeMode: "contain",
   },
 });
 
