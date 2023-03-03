@@ -3,10 +3,10 @@ import { Octicons, AntDesign } from "@expo/vector-icons";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colores } from "../utils/material";
 
-const product = "../assets/product.png";
+const product = "../assets/producto.png";
 
-const CardProductItem = ({ section = "Maquillaje" }) => (
-  <View style={styles.container}>
+const CardProductItem = ({ onPress, section = "Maquillaje" }) => (
+  <TouchableOpacity onPress={onPress} style={styles.container}>
     <View style={styles.topSection}>
       <View style={styles.category}>
         <View style={styles.icon}>
@@ -28,7 +28,7 @@ const CardProductItem = ({ section = "Maquillaje" }) => (
       <Text style={styles.descProduct}>Lorem Ipsum</Text>
       <Text style={styles.costProduct}>$8.000.0</Text>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({

@@ -1,14 +1,14 @@
 import React from "react";
-import { Octicons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
+import { Octicons, AntDesign } from "@expo/vector-icons";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { colores } from "../utils/material";
 
 const product = "../assets/product.png";
 
-const CardProduct = ({ isEnd, section = "Maquillaje" }) => (
-  <View
+const CardProduct = ({ onPress, isEnd, section = "Maquillaje" }) => (
+  <TouchableOpacity
+    onPress={onPress}
     style={[styles.container, { marginRight: isEnd ? 60 : 0, marginLeft: 5 }]}
   >
     <View style={styles.topSection}>
@@ -32,7 +32,7 @@ const CardProduct = ({ isEnd, section = "Maquillaje" }) => (
         <Text style={styles.costProduct}>$8.000.0 $5.000.0</Text>
       </View>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({

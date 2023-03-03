@@ -77,9 +77,13 @@ export default function HomeScreen({ navigation }) {
         <FlatList
           horizontal
           data={categorias}
-          showsHorizontalScrollIndicator={false}
           style={{ maxWidth: wp(90) }}
-          renderItem={({ item }) => <CardProduct />}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <CardProduct
+              onPress={() => navigation.navigate("ProductoDetalle")}
+            />
+          )}
         />
 
         {/* Popular products Section */}
@@ -87,9 +91,13 @@ export default function HomeScreen({ navigation }) {
         <FlatList
           horizontal
           data={categorias}
-          showsHorizontalScrollIndicator={false}
           style={{ maxWidth: wp(90) }}
-          renderItem={({ item }) => <CardProductItem />}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <CardProductItem
+              onPress={() => navigation.navigate("ProductoDetalle")}
+            />
+          )}
         />
       </ScrollView>
     </View>

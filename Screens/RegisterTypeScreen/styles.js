@@ -5,10 +5,11 @@ import { colores as colors, FontSize } from "../../utils/material";
 
 export const styles = StyleSheet.create({
   separator: {
-    width: "100%",
+    width: "90%",
     height: 1,
     marginBottom: 20,
     backgroundColor: colors.ligthGray,
+    marginHorizontal: '5%',
   },
   main: {
     flex: 1,

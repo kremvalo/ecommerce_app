@@ -33,31 +33,8 @@ export default function LoginScreen({ navigation }) {
   } = useFormik({
     initialValues: initialValues,
     validationSchema: LoginSchema,
-    onSubmit: (values) => submitForm(values),
+    onSubmit: (values) => onSubmit(values),
   });
-
-  const onSubmit = async () => {
-    setButtonSubmit(true);
-
-    let response = await handleSubmit("POS", LOGIN_USER, error, {
-      correo,
-      password,
-    });
-
-    if (response) {
-      await SecureStore.setItemAsync(
-        "jwt",
-        JSON.stringify({
-          token: response?.data?.login?.authToken,
-          id_user: response?.data?.login.user?.id,
-        })
-      );
-
-      toastGenerate("Inicio de sesion exitoso");
-      navigation.replace("Splash");
-    }
-    setButtonSubmit(false);
-  };
 
   //querys para graphl
   const LOGIN_USER = `
@@ -76,6 +53,29 @@ export default function LoginScreen({ navigation }) {
     }
   }
 `;
+
+  const onSubmit = async (formValues) => {
+    setButtonSubmit(true);
+
+    const response = await handleSubmit("POS", LOGIN_USER, error, {
+      correo,
+      password,
+    });
+
+    if (response) {
+      await SecureStore.setItemAsync(
+        "jwt",
+        JSON.stringify({
+          token: response?.data?.login?.authToken,
+          id_user: response?.data?.login.user?.id,
+        })
+      );
+
+      toastGenerate("Inicio de sesion exitoso");
+      navigation.replace("Splash");
+    }
+    setButtonSubmit(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -115,7 +115,7 @@ export default function LoginScreen({ navigation }) {
             >
               <Text style={[styles.textR]}>¿Olvidaste tu contraseña?</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={onSubmit} style={styles.loginButton}>
+            <TouchableOpacity onPress={onSubmitForm} style={styles.loginButton}>
               <Text style={styles.textButton}>Ingresar</Text>
             </TouchableOpacity>
           </View>
