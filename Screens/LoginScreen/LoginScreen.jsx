@@ -11,12 +11,13 @@ import {
 import { styles } from "./styles";
 import { initialValues, LoginSchema } from ".";
 
+import { colores } from "../../utils/material";
+
 import Logo from "../../Components/Logo";
 import { TextField } from "../../Components";
 import { toastGenerate } from "../../utils/ToastGenerate";
-import ButtonComponent from "../../Components/ButtonComponent";
 
-const logo = "../../assets/LogoRojo.png";
+const logo = "../../assets/logo_solo_rosa.png";
 
 export default function LoginScreen({ navigation }) {
   //variables de control
@@ -78,17 +79,22 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <KeyboardAwareScrollView keyboardShouldPersistTaps="handled">
+      <KeyboardAwareScrollView
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.box}>
-          <Logo src={require(logo)} />
+          <View style={styles.sectionLogo}>
+            <Logo src={require(logo)} />
+          </View>
           <View>
             <TextField
               name="correo"
               label="Usuario"
-              placeholder="Escribe tu usuario"
               value={values.correo}
               error={errors.correo}
               touched={touched.correo}
+              placeholder="Escribe tu usuario"
               onChangeText={handleChange("correo")}
             />
             <TextField
@@ -98,28 +104,33 @@ export default function LoginScreen({ navigation }) {
               value={values.password}
               error={errors.password}
               touched={touched.password}
+              iconColor={colores.primary}
               secureTextEntry={showPassword}
               placeholder="Escribe tu contraseña"
               onChangeText={handleChange("password")}
               onPress={() => handleShowPassword(!showPassword)}
             />
-            <ButtonComponent
-              buttonDisabled={buttonSubmit}
-              style={{ marginTop: heightPercentageToDP(5) }}
-              type="blanco"
-              size="medium"
-              label="Inicia sesión"
-              rounded="large"
-              onPress={onSubmit}
-            />
             <TouchableOpacity
               onPress={() => navigation.navigate("ContrasenaOlvidada")}
             >
-              <Text style={[styles.textR]}>Contraseña olvidada</Text>
+              <Text style={[styles.textR]}>¿Olvidaste tu contraseña?</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onSubmit} style={styles.loginButton}>
+              <Text style={styles.textButton}>Ingresar</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.separator} />
+          <View style={styles.viewLogin}>
+            <Text style={styles.textLogin}>¿No tienes cuenta?</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("RegisterTypeScreen")}
+            >
+              <Text style={styles.textPress}>Registrate</Text>
             </TouchableOpacity>
           </View>
           <View
             style={{
+              flex: 1,
               flexDirection: "row",
               alignItems: "flex-end",
               width: widthPercentageToDP(90),

@@ -10,7 +10,11 @@ import { documentTypes, filterConst, initialValues, LoginSchema } from ".";
 import { handleSubmit } from "../../Controllers";
 import { PhoneField, SelectField, TextField } from "../../Components";
 
-const logoVherona = "../../assets/LogoRojo.png";
+import { role } from "../../utils/const";
+import { colores as colors } from "../../utils/material";
+
+const logoClient = "../../assets/LogoRojo.png";
+const logoBusiness = "../../assets/modalnegocio.png";
 
 export default function RegisterScreen({ navigation, route }) {
   const { filter } = route.params;
@@ -74,9 +78,9 @@ export default function RegisterScreen({ navigation, route }) {
     try {
       const response = await handleSubmit(
         "POS",
-        filter === filterConst.CLIENT ? REGISTER_USER : REGISTER_BUSINESS,
+        filter === role.CLIENT ? REGISTER_USER : REGISTER_BUSINESS,
         errors,
-        filter === filterConst.CLIENT
+        filter === role.CLIENT
           ? { nombres, correo, password }
           : { nombres, correo, password, nit, telefono }
       );
@@ -97,7 +101,14 @@ export default function RegisterScreen({ navigation, route }) {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.box}>
-        <Image style={styles.imageLogo} source={require(logoVherona)} />
+        <Image
+          style={styles.imageLogo}
+          source={
+            filter === filterConst.CLIENT
+              ? require(logoClient)
+              : require(logoBusiness)
+          }
+        />
       </View>
       <View style={styles.mainWrapper}>
         <TextField
@@ -137,7 +148,7 @@ export default function RegisterScreen({ navigation, route }) {
           touched={touched.documento}
           onChangeText={handleChange("documento")}
         />
-        {filter === filterConst.BUSINESS && (
+        {filter === role.BUSINESS && (
           <TextField
             name="nit"
             label="Nit"
@@ -175,15 +186,36 @@ export default function RegisterScreen({ navigation, route }) {
           touched={touched.password}
           secureTextEntry={showPassword}
           placeholder="Escribe tu contraseña"
+          iconColor={
+            filter === filterConst.CLIENT
+              ? colors.primary
+              : colors.colorBusiness
+          }
           onChangeText={handleChange("password")}
           onPress={() => handleShowPassword(!showPassword)}
         />
-        <Button disabled={disableButton} onPress={onSubmitForm} />
+        <Button
+          disabled={disableButton}
+          isClient={filter === role.CLIENT}
+          onPress={onSubmitForm}
+        />
         <View style={styles.separator} />
         <View style={styles.viewLogin}>
           <Text style={styles.textLogin}>¿Ya tienes cuenta?</Text>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={styles.textR}>Iniciar sesión</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
+            <Text
+              style={[
+                styles.textR,
+                {
+                  color:
+                    filter === role.CLIENT
+                      ? colors.primary
+                      : colors.colorBusiness,
+                },
+              ]}
+            >
+              Iniciar sesión
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

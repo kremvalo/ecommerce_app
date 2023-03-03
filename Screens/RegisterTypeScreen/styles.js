@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 
 import { colores as colors, FontSize } from "../../utils/material";
 
@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   },
   main: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
   },
   textR: {
     color: colors.primary,
@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: hp(6),
     flexDirection: 'row',
+    paddingHorizontal: wp(6),
   },
   textLogin: {
     fontSize: FontSize.small,

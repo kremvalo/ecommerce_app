@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { Octicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
+
+import { colores } from "../utils/material";
+
+const product = "../assets/product.png";
 
 const CardProduct = ({ isEnd, section = "Maquillaje" }) => (
   <View
@@ -7,17 +13,19 @@ const CardProduct = ({ isEnd, section = "Maquillaje" }) => (
   >
     <View style={styles.topSection}>
       <View style={styles.category}>
-        <View style={styles.icon}></View>
+        <View style={styles.icon}>
+          <Octicons name="paintbrush" size={12} color={colores.primary} />
+        </View>
         <View style={styles.tag}>
           <Text style={styles.tagText}>{section}</Text>
         </View>
       </View>
-      <View style={styles.buttonIcon}>
-        <Image />
-      </View>
+      <TouchableOpacity style={styles.buttonIcon}>
+        <AntDesign name="hearto" size={15} color={colores.primary} />
+      </TouchableOpacity>
     </View>
     <View style={styles.mainSection}>
-      <Image style={styles.imageProduct} />
+      <Image style={styles.imageProduct} source={require(product)} />
       <View style={styles.section}>
         <Text style={styles.textProduct}>Esmalte * Masglo</Text>
         <Text style={styles.descProduct}>Lorem Ipsum</Text>
@@ -59,6 +67,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     backgroundColor: "#FBEDED",
     alignItems: "center",
+    justifyContent: "center",
     zIndex: 1,
   },
   tag: {
@@ -78,8 +87,10 @@ const styles = StyleSheet.create({
   buttonIcon: {
     width: 28,
     height: 28,
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#FBEDED",
-    borderTopEndRadius: 90,
+    borderTopEndRadius: 15,
   },
   mainSection: {
     flexDirection: "row",

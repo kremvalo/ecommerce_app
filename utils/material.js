@@ -16,6 +16,7 @@ export const colores = {
   background: "#ffffff",
   ligthGray: "#D5D8D5",
   textColor: "#3C3D3E",
+  colorBusiness: "#624F92",
 };
 
 export const FontSize = {

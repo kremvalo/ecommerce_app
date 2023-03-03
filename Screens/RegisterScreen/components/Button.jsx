@@ -4,9 +4,23 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 import { colores, FontSize } from "../../../utils/material";
 
-const Button = ({ disabled, onPress }) => (
-  <TouchableOpacity onPress={onPress} style={styles.button} disabled={disabled}>
-    <Text style={styles.textButton}>Registrarse</Text>
+const Button = ({ disabled, isClient, onPress }) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={[
+      styles.button,
+      { backgroundColor: isClient ? colores.primary : "#D1CAE2" },
+    ]}
+    disabled={disabled}
+  >
+    <Text
+      style={[
+        styles.textButton,
+        { color: isClient ? colores.white : "#624F92" },
+      ]}
+    >
+      Registrarse
+    </Text>
   </TouchableOpacity>
 );
 

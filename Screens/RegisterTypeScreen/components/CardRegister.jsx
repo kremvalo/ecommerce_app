@@ -6,7 +6,7 @@ import { colores as colors } from "../../../utils/material";
 
 const client = "../../../assets/client.png";
 const company = "../../../assets/company.png";
-const logoVherona = "../../../assets/LogoRojo.png";
+const logoVheronaPink = "../../../assets/logo_rosado.png";
 const logoVheronaPurple = "../../../assets/modalnegocio.png";
 
 const CardRegister = ({ isCompany, onPress }) => (
@@ -17,8 +17,10 @@ const CardRegister = ({ isCompany, onPress }) => (
     />
     <View style={styles.mainSection}>
       <Image
-        style={[styles.logo, {}]}
-        source={isCompany ? require(logoVherona) : require(logoVheronaPurple)}
+        style={styles.logo}
+        source={
+          isCompany ? require(logoVheronaPink) : require(logoVheronaPurple)
+        }
       />
       <Text style={styles.fisrtText}>
         Somos tu aliado y el de tu negocio e productos de belleza y salud
@@ -53,12 +55,14 @@ const CardRegister = ({ isCompany, onPress }) => (
 const styles = StyleSheet.create({
   card: {
     padding: "4%",
+    width: "90%",
     elevation: 8,
     shadowColor: "#000",
     marginBottom: 20,
     borderRadius: 15,
     flexDirection: "row",
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
+    marginHorizontal: "5%",
     shadowOffset: {
       width: 0,
       height: 4,

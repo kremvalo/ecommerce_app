@@ -43,11 +43,11 @@ export default function HomeScreen({ navigation }) {
         <Header />
         {/* <Buscador /> */}
         <HeaderInfo />
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => navigation.navigate("FilterProductScreen")}
         >
           <Text>Navigate</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
