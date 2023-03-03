@@ -5,7 +5,7 @@ import * as React from "react";
 import CargaInicioSesion from "./Screens/CargaInicioSesion";
 import ConfirmacionRegistro from "./Screens/ConfirmacionRegistro";
 import ContrasenaOlvidada from "./Screens/ContrasenaOlvidada";
-import IniciarSesion from "./Screens/IniciarSesion";
+import LoginScreen from "./Screens/LoginScreen/LoginScreen";
 import InicioMenu from "./Screens/InicioMenu";
 import Carrito from "./Screens/Menu/Carrito/Carrito";
 import CrearOrden from "./Screens/Menu/Carrito/CrearOrden";
@@ -54,7 +54,7 @@ export default function Index() {
           name="ConfirmacionRegistro"
           component={ConfirmacionRegistro}
         />
-        <Stack.Screen name="IniciarSesion" component={IniciarSesion} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen
           name="ContrasenaOlvidada"
           component={ContrasenaOlvidada}

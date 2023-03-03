@@ -35,31 +35,30 @@ import CardProductVariation from '../../../Components/CardProductVariation'
 import Guardar from '../../../Components/Guardar'
 import { currencyFormat } from '../../../utils/Utils'
 export default function ProductoDetalle({ navigation, route }) {
-  const {
-    name,
-    regularPrice: price,
-    image,
-    allPaMarca,
-    reviewCount = 5,
-    id,
-    databaseId,
-    productTags,
-    stockStatus,
-    description,
-    preciosNegocio,
-    type,
-    reviews,
-  } = route.params.producto.node
-  console.log(preciosNegocio)
-  const { colorApp } = useColors()
-  const [recomendados, setRecomendados] = useState([])
-  const [contador, setContador] = useState(1)
-  const { data, viewer, jwt, carrito } = useSelector((state) => state)
-  const [like, setLike] = useState(false)
-  const dispatch = useDispatch()
-  const [variations, setVariations] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [progressValue, setProgressValue] = useState(0)
+  // const {
+  //   name,
+  //   regularPrice: price,
+  //   image,
+  //   allPaMarca,
+  //   reviewCount = 5,
+  //   id,
+  //   databaseId = 2522,
+  //   productTags,
+  //   stockStatus,
+  //   description,
+  //   preciosNegocio,
+  //   type,
+  //   reviews,
+  // } = route.params.producto.node;
+  // console.log(preciosNegocio);
+  const { colorApp } = useColors();
+  const [recomendados, setRecomendados] = useState([]);
+  const [contador, setContador] = useState(1);
+  const { data, viewer, jwt, carrito } = useSelector((state) => state);
+  const [like, setLike] = useState(false);
+  const dispatch = useDispatch();
+  const [variations, setVariations] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   /* const queryProductVariableId = `
   query NewQuery {
@@ -133,10 +132,11 @@ export default function ProductoDetalle({ navigation, route }) {
     }
   }, [databaseId]); */
 
-  useEffect(() => {
-    consultarData()
-    console.log(databaseId)
-  }, [databaseId])
+  // useEffect(() => {
+  //   consultarData();
+  //   console.log(databaseId);
+  // }, [databaseId]);
+
   const consultarData = async () => {
     try {
       setLoading(true)
@@ -155,68 +155,69 @@ export default function ProductoDetalle({ navigation, route }) {
       setLoading(false)
       console.log(error)
     }
-  }
-  const queryRecomendados = `query MyQuery2 {
-    simpleProduct(id: "${databaseId}", idType: DATABASE_ID) {
+  };
+  
+  // const queryRecomendados = `query MyQuery2 {
+  //   simpleProduct(id: "${databaseId}", idType: DATABASE_ID) {
 
-      upsell {
-        edges {
-          node {
-            ... on SimpleProduct {
-                id
-      type
-      productTags {
-        nodes {
-          name
-        }
-      }
-      price(format: RAW)
-      regularPrice(format: RAW)
-      name
-      allPaMarca {
-        nodes {
-          name
-          id
-        }
-      }
-      image {
-        sourceUrl
-      }
-      reviewCount
-      databaseId
-      stockStatus
-      description(format: RAW)
-      preciosNegocio {
-        precioOfertaNegocio
-        precioRegularNegocio
-      }
-            }
-          }
-        }
-      }
-    }
-  }`
+  //     upsell {
+  //       edges {
+  //         node {
+  //           ... on SimpleProduct {
+  //               id
+  //     type
+  //     productTags {
+  //       nodes {
+  //         name
+  //       }
+  //     }
+  //     price(format: RAW)
+  //     regularPrice(format: RAW)
+  //     name
+  //     allPaMarca {
+  //       nodes {
+  //         name
+  //         id
+  //       }
+  //     }
+  //     image {
+  //       sourceUrl
+  //     }
+  //     reviewCount
+  //     databaseId
+  //     stockStatus
+  //     description(format: RAW)
+  //     preciosNegocio {
+  //       precioOfertaNegocio
+  //       precioRegularNegocio
+  //     }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }`;
 
-  const atributosProducto = () => {
-    return productTags?.nodes?.slice(0, 3)?.map((e, i) => {
-      return (
-        <View
-          key={i}
-          style={{
-            paddingHorizontal: widthPercentageToDP(3),
-            marginHorizontal: widthPercentageToDP(2),
-            borderRadius: 5,
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: colores.aux,
-            height: heightPercentageToDP(5),
-          }}
-        >
-          <Text style={styles.textA}>{e.name}</Text>
-        </View>
-      )
-    })
-  }
+  // const atributosProducto = () => {
+  //   return productTags?.nodes?.slice(0, 3)?.map((e, i) => {
+  //     return (
+  //       <View
+  //         key={i}
+  //         style={{
+  //           paddingHorizontal: widthPercentageToDP(3),
+  //           marginHorizontal: widthPercentageToDP(2),
+  //           borderRadius: 5,
+  //           alignItems: "center",
+  //           justifyContent: "center",
+  //           backgroundColor: colores.aux,
+  //           height: heightPercentageToDP(5),
+  //         }}
+  //       >
+  //         <Text style={styles.textA}>{e.name}</Text>
+  //       </View>
+  //     );
+  //   });
+  // };
 
   const calificacionStar = () => {
     let arr = []
@@ -234,11 +235,11 @@ export default function ProductoDetalle({ navigation, route }) {
     return arr
   }
 
-  useEffect(() => {
-    setContador(1)
+  // useEffect(() => {
+  //   setContador(1);
 
-    return () => {}
-  }, [name])
+  //   return () => {};
+  // }, [name]);
 
   return (
     <View style={styles.container}>
@@ -278,7 +279,7 @@ export default function ProductoDetalle({ navigation, route }) {
                     height: widthPercentageToDP(80),
                     resizeMode: 'contain',
                   }}
-                  source={{ uri: image.sourceUrl }}
+                  source={require("../../../assets/product.png")}
                 />
               </View>
             )}
@@ -300,7 +301,7 @@ export default function ProductoDetalle({ navigation, route }) {
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             {atributosProducto()}
-          </View>
+          </View> */}
         </View>
 
         <View
@@ -330,6 +331,7 @@ export default function ProductoDetalle({ navigation, route }) {
                 <Text style={styles.textN}>
                   {allPaMarca.nodes.length > 0 && allPaMarca.nodes[0].name}
                 </Text>
+                /*<Text style={styles.textT}>{name}</Text>
                 <Text style={styles.textT}>{name}</Text>
                 <View
                   style={{
@@ -371,8 +373,8 @@ export default function ProductoDetalle({ navigation, route }) {
               </View>
 
               <View>
-                <Text style={styles.textT}>
-                  {data.role === 'business'
+                {/* <Text style={styles.textT}>
+                  {data.role === "business"
                     ? viewer.autorizaciondenegocio.validarNegocio !== null
                       ? `${
                           preciosNegocio.precioRegularNegocio
@@ -383,7 +385,7 @@ export default function ProductoDetalle({ navigation, route }) {
                         }`
                       : ''
                     : `${currencyFormat(price)}`}
-                </Text>
+                </Text> */}
               </View>
             </View>
 
@@ -395,38 +397,38 @@ export default function ProductoDetalle({ navigation, route }) {
               }}
             >
               <Contador contador={contador} setContador={setContador} />
-              <Guardar producto={route.params.producto} />
+              {/* <Guardar producto={route.params.producto} /> */}
               <ButtonComponent
-                buttonDisabled={stockStatus === 'OUT_OF_STOCK' ? true : false}
+                // buttonDisabled={stockStatus === "OUT_OF_STOCK" ? true : false}
                 type="verde"
                 size="medium"
                 widthSize={widthPercentageToDP(35)}
-                label={
-                  stockStatus === 'OUT_OF_STOCK'
-                    ? 'Agotado'
-                    : 'Añadir a mi bolsa'
-                }
+                // label={
+                //   stockStatus === "OUT_OF_STOCK"
+                //     ? "Agotado"
+                //     : "Añadir a mi bolsa"
+                // }
                 rounded="large"
-                onPress={() => {
-                  data.role === 'business'
-                    ? viewer.autorizaciondenegocio.validarNegocio !== null
-                      ? dispatch(
-                          setCarrito({
-                            ...route.params.producto,
-                            cantidad: contador,
-                          })
-                        )
-                      : toastGenerate('No se ha verificado el negocio')
-                    : dispatch(
-                        setCarrito({
-                          ...route.params.producto,
-                          cantidad: contador,
-                        })
-                      )
-                }}
+                // onPress={() => {
+                //   data.role === "business"
+                //     ? viewer.autorizaciondenegocio.validarNegocio !== null
+                //       ? dispatch(
+                //           setCarrito({
+                //             ...route.params.producto,
+                //             cantidad: contador,
+                //           })
+                //         )
+                //       : toastGenerate("No se ha verificado el negocio")
+                //     : dispatch(
+                //         setCarrito({
+                //           ...route.params.producto,
+                //           cantidad: contador,
+                //         })
+                //       );
+                // }}
               />
             </View>
-            <Text style={styles.description}>{description}</Text>
+            <Text style={styles.description}>Lorem ipsum</Text>
           </View>
         </View>
         <View
@@ -440,10 +442,10 @@ export default function ProductoDetalle({ navigation, route }) {
             paddingHorizontal: widthPercentageToDP(5),
           }}
         >
-          <Text style={{ ...styles.textT, color: colores.neutro }}>
+          {/* <Text style={{ ...styles.textT, color: colores.neutro }}>
             Recomendados:
           </Text>
-          {loading ? (
+           {loading ? (
             <ActivityIndicator />
           ) : (
             <FlatList
@@ -455,7 +457,7 @@ export default function ProductoDetalle({ navigation, route }) {
                 return <CardProductoList producto={producto.item} />
               }}
             />
-          )}
+          )} */}
         </View>
       </ScrollView>
     </View>

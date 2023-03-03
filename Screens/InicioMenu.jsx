@@ -35,7 +35,7 @@ export default function InicioMenu({ navigation, route }) {
             label="Inicia sesión"
             rounded="large"
             onPress={() => {
-              navigation.navigate("IniciarSesion");
+              navigation.navigate("LoginScreen");
             }}
           />
           <TouchableOpacity

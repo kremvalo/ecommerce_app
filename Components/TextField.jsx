@@ -20,6 +20,7 @@ const TextField = forwardRef(
       value,
       touched,
       onPress,
+      iconColor = "#231F20",
       isPassword,
       placeholder,
       keyboardType,
@@ -77,9 +78,9 @@ const TextField = forwardRef(
               ]}
             >
               {!secureTextEntry ? (
-                <Octicons name="eye" size={24} color="##231F20" />
+                <Octicons name="eye" size={24} color={iconColor} />
               ) : (
-                <Octicons name="eye-closed" size={24} color="##231F20" />
+                <Octicons name="eye-closed" size={24} color={iconColor} />
               )}
             </TouchableOpacity>
           )}
