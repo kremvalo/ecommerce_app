@@ -1,9 +1,6 @@
 import React from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
-import {
-  heightPercentageToDP,
-  widthPercentageToDP,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP } from "react-native-responsive-screen";
 
 const avatar =
   "https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png";

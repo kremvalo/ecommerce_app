@@ -5,21 +5,21 @@ import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
 import { HeaderInfo } from "./components";
 
-import Header from "../../../Components/Header";
-import Banner from "../../../Components/Banner";
-import Categoria from "../../../Components/Categoria";
 import {
+  Header,
+  Banner,
+  Categoria,
   CardProduct,
   CardProductItem,
   MainContainer,
   RenderItem,
   TitleSection,
-} from "../../../Components";
+} from "../../Components";
 
-import startGetBannerInfo from "../../../queries/getBannerInfo";
-import startGetAllCategories from "../../../queries/getAllCategories";
-import startGetOfferProducts from "../../../queries/getOfferProducts";
-import startGetPopularProducts from "../../../queries/getPopularProducts";
+import startGetBannerInfo from "../../queries/getBannerInfo";
+import startGetAllCategories from "../../queries/getAllCategories";
+import startGetOfferProducts from "../../queries/getOfferProducts";
+import startGetPopularProducts from "../../queries/getPopularProducts";
 
 export default function HomeScreen({ navigation }) {
   const dispatch = useDispatch();

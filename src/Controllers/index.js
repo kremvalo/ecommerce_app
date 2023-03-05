@@ -1,6 +1,7 @@
 import axios from "axios";
 import { URL_API } from "@env";
 import { toastGenerate } from "../utils/ToastGenerate";
+
 export const handleChange = (
   e,
   validate,
@@ -14,9 +15,9 @@ export const handleChange = (
   validate(e, extra)
     ? callbackError({ ...error, [errorName]: false })
     : callbackError({
-        ...error,
-        [errorName]: true,
-      });
+      ...error,
+      [errorName]: true,
+    });
 };
 
 export const handleSubmit = async (

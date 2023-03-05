@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
-import { colores, FontSize } from "../../../utils/material";
+import { colores, FontSize } from "../../utils/material";
 
 export const styles = StyleSheet.create({
   wrapper: {

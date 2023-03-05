@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, Touchable, View } from "react-native";
 import React, { useCallback, useEffect } from "react";
 import { colores } from "../utils/material";
 import Animated, {
@@ -24,6 +24,7 @@ import { gql } from "@apollo/client";
 import { toastGenerate } from "../utils/ToastGenerate";
 import dataResponse from "../utils/dataResponse";
 import useColors from "../utils/hooks/useColors";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Splash({ navigation }) {
   const dispatch = useDispatch();
@@ -98,7 +99,7 @@ export default function Splash({ navigation }) {
       }
     }
     await dataResponse(dispatch);
-    navigation.replace("HomeNav");
+    navigation.navigate("HomeScreen");
   };
 
   useFocusEffect(
@@ -110,8 +111,11 @@ export default function Splash({ navigation }) {
   );
 
   return (
-    <View style={[styles.container, { backgroundColor: colorApp }]}>
+    <View stylem={[styles.container, { backgroundColor: colorApp }]}>
       <Logo src={require("../assets/logo-solo.png")} />
+      <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+        <Text>nabvigate</Text>
+      </TouchableOpacity>
     </View>
   );
 }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { EvilIcons, AntDesign } from "@expo/vector-icons";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
-import { colores } from "../../../../utils/material";
+import { colores } from "../../../utils/material";
 
 const SearchFilter = ({ onPress }) => {
   const [text, onChangeText] = useState("");

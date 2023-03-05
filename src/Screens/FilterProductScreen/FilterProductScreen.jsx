@@ -5,8 +5,7 @@ import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
 import { filters } from ".";
 import { styles } from "./styles";
-import CategoryCard from "./components/CategoryCard";
-import FilterButton from "./components/FilterButton";
+import { CategoryCard, FilterButton, SearchFilter } from "./components";
 
 import {
   Header,
@@ -15,8 +14,7 @@ import {
   TitleSection,
   MainContainer,
   CardProductItem,
-} from "../../../Components";
-import SearchFilter from "./components/SearchFilter";
+} from "../../Components";
 
 function FilterProductScreen({ route }) {
   const { name, image } = route.params;

@@ -33,9 +33,7 @@ function RegisterTypeScreen({ navigation }) {
         <View style={styles.separator} />
         <View style={styles.viewLogin}>
           <Text style={styles.textLogin}>¿Ya tienes cuenta?</Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("RegisterScreen")}
-          >
+          <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
             <Text style={styles.textR}>Iniciar sesión</Text>
           </TouchableOpacity>
         </View>
