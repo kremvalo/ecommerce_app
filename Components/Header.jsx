@@ -88,8 +88,6 @@ export default function Header({ back }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: heightPercentageToDP(10),
-
     width: widthPercentageToDP(90),
     flexDirection: "row",
 
@@ -110,6 +108,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
     left: widthPercentageToDP(1),
-    top: -3,
   },
 });

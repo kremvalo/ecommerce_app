@@ -5,5 +5,7 @@ import Header from './Header';
 import TextField from './TextField';
 import SelectField from './SelectField';
 import PhoneField from './PhoneField';
+import MainContainer from './MainContainer';
+import RenderItem from './RenderItem';
 
-export { TitleSection, CardProduct, CardProductItem, Header, TextField, SelectField, PhoneField };
+export { TitleSection, CardProduct, CardProductItem, Header, TextField, RenderItem, SelectField, PhoneField, MainContainer };

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import { EvilIcons, AntDesign } from "@expo/vector-icons";
+import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 
-const SearchFilter = () => {
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import { colores } from "../../../../utils/material";
+
+const SearchFilter = ({ onPress }) => {
   const [text, onChangeText] = useState("");
   return (
     <View style={styles.wrapper}>
@@ -12,9 +15,13 @@ const SearchFilter = () => {
           style={styles.text}
           onChangeText={onChangeText}
         />
-        <View style={styles.searchIcon} />
+        <View style={styles.searchIcon}>
+          <EvilIcons name="search" size={24} color={colores.primary} />
+        </View>
       </View>
-      <View style={styles.filterIcon} />
+      <TouchableOpacity onPress={onPress} style={styles.filterIcon}>
+        <AntDesign name="filter" size={20} color={colores.primary} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -32,9 +39,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   text: {
-    height: 32,
+    height: 36,
     borderWidth: 1,
-    padding: 10,
+    paddingHorizontal: 10,
     width: "90%",
     borderColor: "#FFADB0",
     borderTopLeftRadius: 8,
@@ -42,15 +49,19 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     width: 32,
-    height: 32,
-    borderTopEndRadius: 15,
+    height: 36,
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#FFADB0",
+    borderTopEndRadius: 15,
   },
   filterIcon: {
     width: 32,
     height: 32,
-    borderTopEndRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#FBEDED",
+    borderTopEndRadius: 15,
   },
 });
 

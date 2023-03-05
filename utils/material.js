@@ -17,6 +17,7 @@ export const colores = {
   ligthGray: "#D5D8D5",
   textColor: "#3C3D3E",
   colorBusiness: "#624F92",
+  lightBlue: "#5ABED2",
 };
 
 export const FontSize = {

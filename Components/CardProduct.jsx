@@ -3,47 +3,76 @@ import { Octicons, AntDesign } from "@expo/vector-icons";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { colores } from "../utils/material";
+import { replaceText, trimEllip } from "../utils/Utils";
 
-const product = "../assets/product.png";
+const CardProduct = ({ item, isEnd, section = "Maquillaje", onPress }) => {
+  const {
+    name,
+    price,
+    salePrice,
+    shortDescription,
+    image: { sourceUrl },
+  } = item;
 
-const CardProduct = ({ onPress, isEnd, section = "Maquillaje" }) => (
-  <TouchableOpacity
-    onPress={onPress}
-    style={[styles.container, { marginRight: isEnd ? 60 : 0, marginLeft: 5 }]}
-  >
-    <View style={styles.topSection}>
-      <View style={styles.category}>
-        <View style={styles.icon}>
-          <Octicons name="paintbrush" size={12} color={colores.primary} />
+  const description = replaceText(shortDescription, "<p>", "", "</p>");
+
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.container, { marginRight: isEnd ? 60 : 0, marginLeft: 5 }]}
+    >
+      <View style={styles.topSection}>
+        <View style={styles.category}>
+          <View style={styles.icon}>
+            <Octicons name="paintbrush" size={12} color={colores.primary} />
+          </View>
+          <View style={styles.tag}>
+            <Text style={styles.tagText}>{section}</Text>
+          </View>
         </View>
-        <View style={styles.tag}>
-          <Text style={styles.tagText}>{section}</Text>
+        <TouchableOpacity style={styles.buttonIcon}>
+          <AntDesign name="hearto" size={15} color={colores.primary} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.mainSection}>
+        <Image style={styles.imageProduct} source={{ uri: sourceUrl }} />
+        <View style={styles.section}>
+          <Text style={styles.textProduct}>{trimEllip(name, 25)}</Text>
+          <Text style={styles.descProduct}>{trimEllip(description, 25)}</Text>
+
+          <View style={styles.price}>
+            <Text
+              style={[
+                styles.unitProduct,
+                {
+                  color: salePrice ? colores.black : colores.lightBlue,
+                  textDecorationLine: salePrice ? "line-through" : "none",
+                },
+              ]}
+            >
+              {replaceText(price, "&nbsp;", "")}
+            </Text>
+            {salePrice && (
+              <Text style={styles.saleProduct}>
+                {replaceText(salePrice, "&nbsp;", "")}
+              </Text>
+            )}
+          </View>
         </View>
       </View>
-      <TouchableOpacity style={styles.buttonIcon}>
-        <AntDesign name="hearto" size={15} color={colores.primary} />
-      </TouchableOpacity>
-    </View>
-    <View style={styles.mainSection}>
-      <Image style={styles.imageProduct} source={require(product)} />
-      <View style={styles.section}>
-        <Text style={styles.textProduct}>Esmalte * Masglo</Text>
-        <Text style={styles.descProduct}>Lorem Ipsum</Text>
-        <Text style={styles.costProduct}>$8.000.0 $5.000.0</Text>
-      </View>
-    </View>
-  </TouchableOpacity>
-);
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     width: 284,
-    backgroundColor: "#fff",
+    backgroundColor: colores.white,
     padding: 16,
     marginBottom: 20,
     borderRadius: 8,
     marginTop: 6,
-    shadowColor: "#000",
+    shadowColor: colores.black,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -112,10 +141,20 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     color: "#3C3D3E",
   },
-  costProduct: {
+  price: {
+    flexDirection: "row",
+  },
+  unitProduct: {
     fontSize: 14,
     fontWeight: "bold",
-    color: "#3C3D3E",
+    marginRight: 10,
+    textDecorationStyle: "solid",
+  },
+  saleProduct: {
+    color: colores.lightBlue,
+    fontSize: 14,
+    fontWeight: "bold",
+    marginRight: 10,
   },
 });
 

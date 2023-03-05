@@ -1,24 +1,14 @@
 import React from "react";
 import { SvgUri } from "react-native-svg";
-import { useNavigation } from "@react-navigation/native";
 import { widthPercentageToDP } from "react-native-responsive-screen";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { colores, FontSize } from "../utils/material";
-// import { cambiarSubCategorias } from "../redux/actions";
 
-export default function Categoria({ title, image, width = 22.5 }) {
-  const navigation = useNavigation();
-
-  const onPressCategory = () => {
-    navigation.navigate("FilterProductScreen");
-    // dispatch(cambiarSubCategorias({ categoria, title }));
-    // navigation.getParent("LeftDrawer").openDrawer();
-  };
-
+export default function Categoria({ title, image, width = 22.5, onPress }) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={onPressCategory} style={styles.touchView}>
+      <TouchableOpacity onPress={onPress} style={styles.touchView}>
         {image ? (
           <SvgUri width="30" height="30" uri={image} />
         ) : (

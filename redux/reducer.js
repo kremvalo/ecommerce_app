@@ -13,6 +13,9 @@ import {
   BORRAR_ITEM_FAVORITO,
   CLEAN_CARRITO,
   SET_CATEGORIES,
+  SET_POPULAR_PRODUCTS,
+  SET_BANNERS,
+  SET_OFFER_PRODUCTS,
 } from "./actions";
 
 const initialState = {
@@ -27,6 +30,9 @@ const initialState = {
   tipos_de_piel: [],
   viewer: {},
   favoritos: [],
+  popularProducts: [],
+  banners: [],
+  offerProducts: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -53,10 +59,31 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
+    case SET_BANNERS: {
+      return {
+        ...state,
+        banners: action.payload,
+      };
+    }
+
     case SET_CATEGORIES: {
       return {
         ...state,
         categories: action.payload,
+      };
+    }
+
+    case SET_POPULAR_PRODUCTS: {
+      return {
+        ...state,
+        popularProducts: action.payload,
+      };
+    }
+
+    case SET_OFFER_PRODUCTS: {
+      return {
+        ...state,
+        offerProducts: action.payload,
       };
     }
 

@@ -1,54 +1,83 @@
 import React from "react";
 import { Octicons, AntDesign } from "@expo/vector-icons";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
+
 import { colores } from "../utils/material";
+import { replaceText, trimEllip } from "../utils/Utils";
 
-const product = "../assets/producto.png";
+const CardProductItem = ({ isEnd, item, onPress, section = "Maquillaje" }) => {
+  const {
+    name,
+    price,
+    salePrice,
+    shortDescription,
+    image: { sourceUrl },
+  } = item;
+  const description = replaceText(shortDescription, "<p>", "", "</p>");
 
-const CardProductItem = ({ onPress, section = "Maquillaje" }) => (
-  <TouchableOpacity onPress={onPress} style={styles.container}>
-    <View style={styles.topSection}>
-      <View style={styles.category}>
-        <View style={styles.icon}>
-          <Octicons name="paintbrush" size={12} color={colores.primary} />
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.container, { marginRight: isEnd ? 60 : 0, marginLeft: 5 }]}
+    >
+      <View style={styles.topSection}>
+        <View style={styles.category}>
+          <View style={styles.icon}>
+            <Octicons name="paintbrush" size={12} color={colores.primary} />
+          </View>
+          <View style={styles.tag}>
+            <Text style={styles.tagText}>{section}</Text>
+          </View>
         </View>
-        <View style={styles.tag}>
-          <Text style={styles.tagText}>{section}</Text>
+        <TouchableOpacity style={styles.buttonIcon}>
+          <AntDesign name="hearto" size={15} color={colores.primary} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.section}>
+        <Image style={styles.imageProduct} source={{ uri: sourceUrl }} />
+      </View>
+      <View>
+        <Text style={styles.textProduct}>{trimEllip(name, 25)}</Text>
+        <Text style={styles.descProduct}>{trimEllip(description, 25)}</Text>
+
+        <View style={styles.price}>
+          <Text
+            style={[
+              styles.unitProduct,
+              {
+                color: salePrice ? colores.black : colores.lightBlue,
+                textDecorationLine: salePrice ? "line-through" : "none",
+              },
+            ]}
+          >
+            {replaceText(price, "&nbsp;", "")}
+          </Text>
+          {salePrice && (
+            <Text style={styles.saleProduct}>
+              {replaceText(salePrice, "&nbsp;", "")}
+            </Text>
+          )}
         </View>
       </View>
-      <TouchableOpacity style={styles.buttonIcon}>
-        <AntDesign name="hearto" size={15} color={colores.primary} />
-      </TouchableOpacity>
-    </View>
-    <View style={styles.section}>
-      <Image style={styles.imageProduct} source={require(product)} />
-    </View>
-    <View>
-      <Text style={styles.textProduct}>Esmalte * Masglo</Text>
-      <Text style={styles.descProduct}>Lorem Ipsum</Text>
-      <Text style={styles.costProduct}>$8.000.0</Text>
-    </View>
-  </TouchableOpacity>
-);
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     width: 200,
-    backgroundColor: "#fff",
+    backgroundColor: colores.white,
     padding: 16,
-    marginLeft: 5,
     marginBottom: 20,
     borderRadius: 8,
     marginTop: 6,
-    shadowColor: "#000",
-    marginRight: 20,
+    shadowColor: colores.black,
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
   },
   topSection: {
@@ -99,6 +128,9 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     alignItems: "center",
   },
+  price: {
+    flexDirection: "row",
+  },
   imageProduct: {
     width: 72,
     height: 90,
@@ -114,10 +146,17 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     color: "#3C3D3E",
   },
-  costProduct: {
+  unitProduct: {
     fontSize: 14,
     fontWeight: "bold",
-    color: "#3C3D3E",
+    marginRight: 10,
+    textDecorationStyle: "solid",
+  },
+  saleProduct: {
+    color: colores.lightBlue,
+    fontSize: 14,
+    fontWeight: "bold",
+    marginRight: 10,
   },
 });
 

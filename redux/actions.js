@@ -1,5 +1,3 @@
-import { handleSubmit } from "../Controllers";
-
 export const CAMBIAR_SUBCATEGORIAS = "CAMBIAR_SUBCATEGORIAS";
 export const SET_JWT = "SET_JWT";
 export const SET_DATA_USER = "SET_DATA_USER";
@@ -14,6 +12,9 @@ export const BORRAR_ITEM_FAVORITO = "BORRAR_ITEM_FAVORITO";
 export const AGREGAR_ITEM_FAVORITO = "AGREGAR_ITEM_FAVORITO";
 export const CLEAN_CARRITO = "CLEAN_CARRITO";
 export const SET_CATEGORIES = "SET_CATEGORIES";
+export const SET_POPULAR_PRODUCTS = "SET_POPULAR_PRODUCTS";
+export const SET_BANNERS = "SET_BANNERS";
+export const SET_OFFER_PRODUCTS = "SET_OFFER_PRODUCTS";
 
 export function cambiarSubCategorias(subCategorias) {
   return {
@@ -102,6 +103,27 @@ export function cleanCarrito(data) {
 export function getAllCategories(data) {
   return {
     type: SET_CATEGORIES,
+    payload: data,
+  };
+}
+
+export function getPopularProducts(data) {
+  return {
+    type: SET_POPULAR_PRODUCTS,
+    payload: data,
+  };
+}
+
+export function getBannerInfo(data) {
+  return {
+    type: SET_BANNERS,
+    payload: data,
+  };
+}
+
+export function getOfferProducts(data) {
+  return {
+    type: SET_OFFER_PRODUCTS,
     payload: data,
   };
 }
