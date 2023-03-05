@@ -301,7 +301,7 @@ export default function ProductoDetalle({ navigation, route }) {
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             {atributosProducto()}
-          </View> */}
+          </View> */
         </View>
 
         <View
