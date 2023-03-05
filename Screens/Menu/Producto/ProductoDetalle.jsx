@@ -7,33 +7,33 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native'
-import React, { useState } from 'react'
-import Dots from 'react-native-dots-pagination'
-import Header from '../../../Components/Header'
-import { AntDesign, FontAwesome5 } from '@expo/vector-icons'
+} from "react-native";
+import React, { useState } from "react";
+import Dots from "react-native-dots-pagination";
+import Header from "../../../Components/Header";
+import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 
-import { colores, FontSize } from '../../../utils/material'
+import { colores, FontSize } from "../../../utils/material";
 import {
   heightPercentageToDP,
   widthPercentageToDP,
-} from 'react-native-responsive-screen'
-const atributos = ['Exfoliante', 'Piel sensible', 'Hidratante']
-import Carousel from 'react-native-reanimated-carousel'
-import { useSharedValue } from 'react-native-reanimated'
-import ButtonComponent from '../../../Components/ButtonComponent'
-import Contador from '../../../Components/Contador'
-import CardProductoList from '../../../Components/CardProductoList'
-import useColors from '../../../utils/hooks/useColors'
-import { useDispatch, useSelector } from 'react-redux'
-import { setCarrito } from '../../../redux/actions'
-import { toastGenerate } from '../../../utils/ToastGenerate'
-import { useEffect } from 'react'
-import { handleSubmit } from '../../../Controllers'
-import CardProoductVariation from '../../../Components/CardProductVariation'
-import CardProductVariation from '../../../Components/CardProductVariation'
-import Guardar from '../../../Components/Guardar'
-import { currencyFormat } from '../../../utils/Utils'
+} from "react-native-responsive-screen";
+const atributos = ["Exfoliante", "Piel sensible", "Hidratante"];
+import Carousel from "react-native-reanimated-carousel";
+import { useSharedValue } from "react-native-reanimated";
+import ButtonComponent from "../../../Components/ButtonComponent";
+import Contador from "../../../Components/Contador";
+import CardProductoList from "../../../Components/CardProductoList";
+import useColors from "../../../utils/hooks/useColors";
+import { useDispatch, useSelector } from "react-redux";
+import { setCarrito } from "../../../redux/actions";
+import { toastGenerate } from "../../../utils/ToastGenerate";
+import { useEffect } from "react";
+import { handleSubmit } from "../../../Controllers";
+import CardProoductVariation from "../../../Components/CardProductVariation";
+import CardProductVariation from "../../../Components/CardProductVariation";
+import Guardar from "../../../Components/Guardar";
+import { currencyFormat } from "../../../utils/Utils";
 export default function ProductoDetalle({ navigation, route }) {
   // const {
   //   name,
@@ -139,24 +139,24 @@ export default function ProductoDetalle({ navigation, route }) {
 
   const consultarData = async () => {
     try {
-      setLoading(true)
-      console.log('ejecutando')
+      setLoading(true);
+      console.log("ejecutando");
       let producto = await handleSubmit(
-        'GET',
+        "GET",
         queryRecomendados,
         {},
         {},
         jwt.token
-      )
+      );
 
-      setRecomendados(producto.data.simpleProduct.upsell.edges)
-      setLoading(false)
+      setRecomendados(producto.data.simpleProduct.upsell.edges);
+      setLoading(false);
     } catch (error) {
-      setLoading(false)
-      console.log(error)
+      setLoading(false);
+      console.log(error);
     }
   };
-  
+
   // const queryRecomendados = `query MyQuery2 {
   //   simpleProduct(id: "${databaseId}", idType: DATABASE_ID) {
 
@@ -220,7 +220,7 @@ export default function ProductoDetalle({ navigation, route }) {
   // };
 
   const calificacionStar = () => {
-    let arr = []
+    let arr = [];
 
     for (let index = 0; index < parseInt(reviews.averageRating / 2); index++) {
       arr.push(
@@ -230,10 +230,10 @@ export default function ProductoDetalle({ navigation, route }) {
           size={heightPercentageToDP(2)}
           color={colorApp}
         />
-      )
+      );
     }
-    return arr
-  }
+    return arr;
+  };
 
   // useEffect(() => {
   //   setContador(1);
@@ -245,7 +245,7 @@ export default function ProductoDetalle({ navigation, route }) {
     <View style={styles.container}>
       <Header back={true} />
       <ScrollView>
-        <View style={{ alignItems: 'center' }}>
+        <View style={{ alignItems: "center" }}>
           <Carousel
             loop
             width={widthPercentageToDP(100)}
@@ -258,7 +258,7 @@ export default function ProductoDetalle({ navigation, route }) {
             }}
             onProgressChange={(_, absoluteProgress) => {
               if (absoluteProgress % 1 >= 0.5) {
-                setProgressValue(Math.round(absoluteProgress) - 1)
+                setProgressValue(Math.round(absoluteProgress) - 1);
               }
             }}
             data={[...new Array(6).keys()]}
@@ -269,15 +269,15 @@ export default function ProductoDetalle({ navigation, route }) {
                 style={{
                   flex: 1,
 
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
                 <Image
                   style={{
                     width: widthPercentageToDP(80),
                     height: widthPercentageToDP(80),
-                    resizeMode: 'contain',
+                    resizeMode: "contain",
                   }}
                   source={require("../../../assets/product.png")}
                 />
@@ -286,10 +286,10 @@ export default function ProductoDetalle({ navigation, route }) {
           />
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
+              flexDirection: "row",
+              justifyContent: "space-between",
               width: 100,
-              alignSelf: 'center',
+              alignSelf: "center",
             }}
           >
             <Dots
@@ -299,32 +299,32 @@ export default function ProductoDetalle({ navigation, route }) {
               passiveColor="#F5F5F5"
             />
           </View>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
             {atributosProducto()}
-          </View> */}
+          </View>
         </View>
 
         <View
           style={{
             marginTop: heightPercentageToDP(2),
-            backgroundColor: '#FEFCFC',
+            backgroundColor: "#FEFCFC",
             paddingVertical: 14,
             paddingHorizontal: 24,
             width: widthPercentageToDP(100),
-            alignItems: 'center',
+            alignItems: "center",
           }}
         >
           <View style={{ width: widthPercentageToDP(90) }}>
             <View
               style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
               <View
                 style={{
-                  alignItems: 'flex-start',
+                  alignItems: "flex-start",
                   width: widthPercentageToDP(60),
                 }}
               >
@@ -335,17 +335,17 @@ export default function ProductoDetalle({ navigation, route }) {
                 <Text style={styles.textT}>{name}</Text>
                 <View
                   style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'flex-start',
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
                   }}
                 >
                   <View
                     style={{
                       width: widthPercentageToDP(25),
-                      justifyContent: 'flex-start',
-                      alignItems: 'center',
-                      flexDirection: 'row',
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      flexDirection: "row",
                     }}
                   >
                     {/*  {reviewCount < 1 ? (
@@ -391,9 +391,9 @@ export default function ProductoDetalle({ navigation, route }) {
 
             <View
               style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
               <Contador contador={contador} setContador={setContador} />
@@ -461,42 +461,42 @@ export default function ProductoDetalle({ navigation, route }) {
         </View>
       </ScrollView>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colores.background,
-    alignItems: 'center',
+    alignItems: "center",
     flex: 1,
   },
   textA: {
-    fontFamily: 'Poppins_500Medium',
+    fontFamily: "Poppins_500Medium",
     color: colores.neutro,
     fontSize: FontSize.small,
   },
   textT: {
-    textAlign: 'left',
-    fontFamily: 'Poppins_600SemiBold',
+    textAlign: "left",
+    fontFamily: "Poppins_600SemiBold",
     color: colores.text,
     fontSize: FontSize.medium,
   },
 
   textN: {
-    textAlign: 'left',
-    fontFamily: 'Poppins_400Regular',
+    textAlign: "left",
+    fontFamily: "Poppins_400Regular",
     color: colores.primary,
     fontSize: FontSize.medium,
   },
   textS: {
     marginRight: widthPercentageToDP(1),
-    fontFamily: 'Poppins_400Regular',
+    fontFamily: "Poppins_400Regular",
     color: colores.primary,
     fontSize: FontSize.small,
   },
   description: {
-    fontFamily: 'Poppins_300Light',
+    fontFamily: "Poppins_300Light",
     color: colores.neutro,
     fontSize: FontSize.small,
   },
-})
+});

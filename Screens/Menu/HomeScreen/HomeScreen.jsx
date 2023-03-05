@@ -34,9 +34,11 @@ export default function HomeScreen({ navigation }) {
     startGetPopularProducts(dispatch);
   }, []);
 
+  const isAuth = true;
+
   return (
     <MainContainer hasHeader={<Header />} ph={6}>
-      <HeaderInfo />
+      {isAuth && <HeaderInfo />}
       {/* Banner Section */}
       <FlatList
         horizontal

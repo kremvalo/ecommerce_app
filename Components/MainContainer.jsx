@@ -4,9 +4,15 @@ import { StatusBar, SafeAreaView, ScrollView, StyleSheet } from "react-native";
 
 import { colores as colors } from "../utils/material";
 
-const MainContainer = ({ hasHeader, ph = 0, mh = 0, children }) => (
+const MainContainer = ({
+  ph = 0,
+  mh = 0,
+  colorBar = colors.lightRed,
+  children,
+  hasHeader,
+}) => (
   <>
-    <StatusBar backgroundColor={colors.background} barStyle="dark-content" />
+    <StatusBar backgroundColor={colorBar} barStyle="dark-content" />
     <SafeAreaView style={styles.container}>
       {hasHeader}
       <ScrollView

@@ -1,5 +1,9 @@
 import React from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 
 const avatar =
   "https://www.shareicon.net/data/512x512/2016/05/24/770117_people_512x512.png";
@@ -19,13 +23,14 @@ export default HeaderInfo;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
+    marginTop: 10,
     flexDirection: "row",
   },
   imageAvatar: {
-    width: 32,
-    height: 32,
+    width: widthPercentageToDP(10),
+    height: widthPercentageToDP(10),
+    resizeMode: "stretch",
     borderRadius: 32,
-    resizeMode: "contain",
   },
   sectionText: {
     marginLeft: 15,

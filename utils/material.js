@@ -18,6 +18,7 @@ export const colores = {
   textColor: "#3C3D3E",
   colorBusiness: "#624F92",
   lightBlue: "#5ABED2",
+  lightRed: "#FBEDED",
 };
 
 export const FontSize = {

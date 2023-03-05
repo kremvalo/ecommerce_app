@@ -1,43 +1,34 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
+import { Entypo, AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from "react-native-responsive-screen";
-import { Feather, Entypo } from "@expo/vector-icons";
-import { colores, FontSize } from "../utils/material";
-import { useNavigation } from "@react-navigation/native";
-import { AntDesign } from "@expo/vector-icons";
+
+import { colores } from "../utils/material";
 import useColors from "../utils/hooks/useColors";
-import { useSelector } from "react-redux";
 
 export default function Header({ back }) {
-  const navigation = useNavigation();
-  const { carrito, jwt } = useSelector((state) => state);
   const { colorApp } = useColors();
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <View style={styles.main}>
         {back && (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.goBack();
-            }}
-          >
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <AntDesign
-              style={{ width: widthPercentageToDP(6) }}
               name="left"
-              size={heightPercentageToDP(2)}
               color={colores.text}
+              size={heightPercentageToDP(2)}
+              style={{ width: widthPercentageToDP(6) }}
             />
           </TouchableOpacity>
         )}
         <Image
-          style={{
-            width: heightPercentageToDP(5),
-            height: heightPercentageToDP(5),
-            resizeMode: "cover",
-          }}
+          style={styles.logo}
           source={
             colorApp === "#9787BF"
               ? require("../assets/icono-morado.png")
@@ -46,40 +37,11 @@ export default function Header({ back }) {
         />
       </View>
 
-      <View
-        style={{
-          alignItems: "center",
-          flexDirection: "row",
-          width: widthPercentageToDP(18),
-          justifyContent: "flex-end",
-        }}
-      >
-        <TouchableOpacity onPress={() => navigation.navigate("Carrito")}>
-          <Feather
-            name="shopping-bag"
-            size={heightPercentageToDP(3)}
-            color={colorApp}
-          />
-        </TouchableOpacity>
-        <View style={[styles.bulletNumber, { backgroundColor: colorApp }]}>
-          <Text style={[styles.carrito]}>{carrito.length}</Text>
-        </View>
+      <View style={styles.buttonRight}>
         <TouchableOpacity
           onPress={() => navigation.getParent("RightDrawer").openDrawer()}
         >
-          {jwt ? (
-            <Entypo
-              name="menu"
-              size={heightPercentageToDP(3)}
-              color={colorApp}
-            />
-          ) : (
-            <AntDesign
-              name="user"
-              size={heightPercentageToDP(3)}
-              color={colorApp}
-            />
-          )}
+          <Entypo name="menu" color={colorApp} size={heightPercentageToDP(3)} />
         </TouchableOpacity>
       </View>
     </View>
@@ -88,25 +50,24 @@ export default function Header({ back }) {
 
 const styles = StyleSheet.create({
   container: {
-    width: widthPercentageToDP(90),
+    width: "100%",
+    alignItems: "center",
     flexDirection: "row",
-
     justifyContent: "space-between",
-    alignItems: "center",
+    backgroundColor: "#FBEDED",
+    paddingVertical: 9,
+    paddingHorizontal: widthPercentageToDP(6),
   },
-  carrito: {
-    fontFamily: "Poppins_600SemiBold",
-    fontSize: FontSize.small,
-    color: colores.white,
+  main: { flexDirection: "row", alignItems: "center" },
+  logo: {
+    width: heightPercentageToDP(5),
+    height: heightPercentageToDP(5),
+    resizeMode: "cover",
   },
-  bulletNumber: {
-    width: widthPercentageToDP(6),
-    height: widthPercentageToDP(6),
-    backgroundColor: colores.primary,
-    borderRadius: 100,
-    justifyContent: "center",
+  buttonRight: {
+    width: widthPercentageToDP(18),
     alignItems: "center",
-    position: "absolute",
-    left: widthPercentageToDP(1),
+    flexDirection: "row",
+    justifyContent: "flex-end",
   },
 });

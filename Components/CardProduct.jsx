@@ -38,7 +38,7 @@ const CardProduct = ({ item, isEnd, section = "Maquillaje", onPress }) => {
         <Image style={styles.imageProduct} source={{ uri: sourceUrl }} />
         <View style={styles.section}>
           <Text style={styles.textProduct}>{trimEllip(name, 25)}</Text>
-          <Text style={styles.descProduct}>{trimEllip(description, 25)}</Text>
+          <Text style={styles.descProduct}>{trimEllip(description, 55)}</Text>
 
           <View style={styles.price}>
             <Text
@@ -130,7 +130,9 @@ const styles = StyleSheet.create({
     height: 90,
     marginRight: 8,
   },
-  section: {},
+  section: {
+    width: "65%",
+  },
   textProduct: {
     fontSize: 12,
     fontWeight: "bold",
