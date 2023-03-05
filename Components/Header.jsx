@@ -10,7 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import useColors from "../utils/hooks/useColors";
-import { Ionicons } from "@expo/vector-icons";
+
 export default function Header({ back }) {
   const navigation = useNavigation();
   const { carrito, jwt } = useSelector((state) => state);
