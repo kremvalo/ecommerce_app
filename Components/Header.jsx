@@ -8,8 +8,8 @@ import { Feather, Entypo } from "@expo/vector-icons";
 import { colores, FontSize } from "../utils/material";
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
 import useColors from "../utils/hooks/useColors";
+import { useSelector } from "react-redux";
 
 export default function Header({ back }) {
   const navigation = useNavigation();
