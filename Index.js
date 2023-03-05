@@ -27,6 +27,8 @@ import ValidarTelefono from "./Screens/ValidarTelefono";
 
 import RegisterScreen from "./Screens/RegisterScreen/RegisterScreen";
 import RegisterTypeScreen from './Screens/RegisterTypeScreen/RegisterTypeScreen';
+import PurchaseStatusScreen from "./Screens/PurchaseStatusScreen/PurchaseStatusScreen";
+import VerifyPurchaseScreen from "./Screens/VerifyPurchaseScreen/VerifyPurchaseScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +52,8 @@ export default function Index() {
         <Stack.Screen name="InicioMenu" component={InicioMenu} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen name="RegisterTypeScreen" component={RegisterTypeScreen} />
+        <Stack.Screen name="PurchaseStatusScreen" component={PurchaseStatusScreen} />
+        <Stack.Screen name="VerifyPurchaseScreen" component={VerifyPurchaseScreen} />
         <Stack.Screen
           name="ConfirmacionRegistro"
           component={ConfirmacionRegistro}
@@ -62,6 +66,7 @@ export default function Index() {
 
         <Stack.Screen name="ValidarTelefono" component={ValidarTelefono} />
         <Stack.Screen name="CargaInicioSesion" component={CargaInicioSesion} />
+        
         <Stack.Screen
           name="HomeNav"
           component={RightDrawerScreen}
