@@ -113,7 +113,7 @@ export default function ProductoDetalle({ navigation, route }) {
       console.log("ejecutando");
       let producto = await handleSubmit(
         "GET",
-        queryProductVariableId,
+        queryProductVariableId,x
         {},
         {}.jwt
       );
@@ -256,11 +256,11 @@ export default function ProductoDetalle({ navigation, route }) {
               parallaxScrollingScale: 0.9,
               parallaxScrollingOffset: 50,
             }}
-            onProgressChange={(_, absoluteProgress) => {
-              if (absoluteProgress % 1 >= 0.5) {
-                setProgressValue(Math.round(absoluteProgress) - 1);
-              }
-            }}
+            // onProgressChange={(_, absoluteProgress) => {
+            //   if (absoluteProgress % 1 >= 0.5) {
+            //     setProgressValue(Math.round(absoluteProgress) - 1);
+            //   }
+            // }}
             data={[...new Array(6).keys()]}
             scrollAnimationDuration={1000}
             pagingEnabled
@@ -292,16 +292,16 @@ export default function ProductoDetalle({ navigation, route }) {
               alignSelf: "center",
             }}
           >
-            <Dots
+            {/* <Dots
               length={6}
-              active={progressValue}
+              active={false}
               activeColor="#FFADB0"
               passiveColor="#F5F5F5"
-            />
+            /> */}
           </View>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          {/* <View style={{ flexDirection: "row", alignItems: "center" }}>
             {atributosProducto()}
-          </View>
+          </View> */}
         </View>
 
         <View
@@ -328,11 +328,10 @@ export default function ProductoDetalle({ navigation, route }) {
                   width: widthPercentageToDP(60),
                 }}
               >
-                <Text style={styles.textN}>
+                {/* <Text style={styles.textN}>
                   {allPaMarca.nodes.length > 0 && allPaMarca.nodes[0].name}
-                </Text>
-                /*<Text style={styles.textT}>{name}</Text>
-                <Text style={styles.textT}>{name}</Text>
+                </Text> */}
+                <Text style={styles.textT}>Product</Text>
                 <View
                   style={{
                     flexDirection: "row",

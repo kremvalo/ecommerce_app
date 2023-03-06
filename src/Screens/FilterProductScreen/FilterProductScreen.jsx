@@ -16,7 +16,7 @@ import {
   CardProductItem,
 } from "../../Components";
 
-function FilterProductScreen({ route }) {
+function FilterProductScreen({ route, navigation }) {
   const { name, image } = route.params;
   const { offerProducts, popularProducts } = useSelector((state) => state);
 
@@ -45,14 +45,17 @@ function FilterProductScreen({ route }) {
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => {
           const isEnd = index === offerProducts.length - 1;
-          return <CardProduct isEnd={isEnd} item={item} />;
+          return (
+            <CardProduct
+              item={item}
+              isEnd={isEnd}
+              onPress={() => navigation.navigate("ProductoDetalle")}
+            />
+          );
         }}
       />
       <View style={styles.titleSection}>
-        <TitleSection
-          title="Productos populares"
-          onPress={() => navigation.navigate("ProductoDetalle")}
-        />
+        <TitleSection title="Productos populares" />
       </View>
       <FlatList
         horizontal

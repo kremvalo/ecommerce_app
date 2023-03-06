@@ -20,6 +20,8 @@ import {
 
 import { colores } from "../utils/material";
 import DrawerLayout from "../Components/DrawerLayout";
+import ProductoDetalle from "../Screens/Menu/Producto/ProductoDetalle";
+
 import Splash from "../Screens/Splash";
 
 // Stacks
@@ -34,11 +36,15 @@ const Drawer = createDrawerNavigator();
 function HomeStackScreen() {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="HomeScreen"
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="ProductoDetalle" component={ProductoDetalle} />
+      <Stack.Screen
+        name="FilterProductScreen"
+        component={FilterProductScreen}
+      />
     </Stack.Navigator>
   );
 }
@@ -76,28 +82,11 @@ function ProfileStackScreen() {
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
       <Stack.Screen name="ContrasenaOlvidada" component={ContrasenaOlvidada} />
       <Stack.Screen name="RegisterTypeScreen" component={RegisterTypeScreen} />
-      <Stack.Screen
-        name="FilterProductScreen"
-        component={FilterProductScreen}
-      />
     </Stack.Navigator>
   );
 }
 
 function MainNavigation() {
-  const tabBarVisibility = (route) => {
-    // Screen user need to hide
-    const hideOnScreens = [""];
-
-    const routeName = getFocusedRouteNameFromRoute(route);
-    // const routeStack = route.name ? route.name : "";
-
-    if (hideOnScreens.indexOf(routeName) > -1) {
-      return false;
-    }
-    return true;
-  };
-
   // Render icon Home
   const tabIconHome = ({ focused }) => (
     <>
@@ -136,7 +125,6 @@ function MainNavigation() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: styles.bottom,
       }}
     >
       <Tab.Screen
@@ -144,23 +132,27 @@ function MainNavigation() {
         component={HomeStackScreen}
         options={({ route }) => ({
           tabBarIcon: (focused) => tabIconHome(focused),
-          tabBarVisible: tabBarVisibility(route),
+          tabBarStyle: ((route) => {
+            const routeName = getFocusedRouteNameFromRoute(route) ?? "";
+            if (routeName === "ProductoDetalle") {
+              return { display: "none" };
+            }
+            return styles.bottom;
+          })(route),
         })}
       />
       <Tab.Screen
         name="Shopping"
         component={ShoppingStackScreen}
-        options={({ route }) => ({
+        options={() => ({
           tabBarIcon: (focused) => tabIconShopping(focused),
-          tabBarVisible: tabBarVisibility(route),
         })}
       />
       <Tab.Screen
         name="Favorite"
         component={FavoriteStackScreen}
-        options={({ route }) => ({
+        options={() => ({
           tabBarIcon: (focused) => tabIconFavorite(focused),
-          tabBarVisible: tabBarVisibility(route),
         })}
       />
       <Tab.Screen
