@@ -1,8 +1,8 @@
 import { View } from "react-native";
-import { PersistGate } from "redux-persist/integration/react";
-
-import { store, persistor } from "./redux/store";
+import 'react-native-gesture-handler';
 import { Provider } from "react-redux";
+import * as SplashScreen from 'expo-splash-screen';
+import { PersistGate } from "redux-persist/integration/react";
 import {
   useFonts,
   Poppins_100Thin,
@@ -24,8 +24,15 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
-import Index from "./Index";
-export default function App() {
+
+import { store, persistor } from "./src/redux/store";
+import AppNavigator from "./src/navigation/AppNavigator";
+
+SplashScreen.preventAutoHideAsync();
+
+function App() {
+  setTimeout(SplashScreen.hideAsync, 2000);
+
   let [fontsLoaded] = useFonts({
     Poppins_100Thin,
     Poppins_100Thin_Italic,
@@ -54,10 +61,12 @@ export default function App() {
       ) : (
         <Provider store={store}>
           <PersistGate loading={<View />} persistor={persistor}>
-            <Index />
+            <AppNavigator />
           </PersistGate>
         </Provider>
       )}
     </>
   );
 }
+
+export default App;
